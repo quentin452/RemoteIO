@@ -13,6 +13,22 @@ buildscript {
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
+
+}
+
+repositories {
+    maven {
+        name 'CB Repo'
+        url "http://chickenbones.net/maven/"
+    }
+    maven {
+        name "Mobius Repo"
+        url "http://mobiusstrip.eu/maven"
+    }
+    maven {
+        name = "ic2-and-forestry"
+        url = "http://maven.ic2.player.to/"
+    }
 }
 
 apply plugin: 'forge'
@@ -22,11 +38,19 @@ group = mod_group
 archivesBaseName = mod_archive_name
 
 minecraft {
-    runDir = "run/assets"
+    runDir = "run"
     version = minecraft_version + "-" + forge_version
     replaceIn mod_info_path
     replace "%MOD_VERSION%", mod_version
     replace "%FORGE_VERSION%", forge_version
+}
+dependencies {
+    compile "codechicken:CodeChickenLib:${minecraft_version}-${CCLIB_version}:dev"
+    compile "codechicken:CodeChickenCore:${minecraft_version}-${CCC_version}:dev"
+    compile "codechicken:NotEnoughItems:${minecraft_version}-${NEI_version}:dev"
+    compile "mcp.mobius.waila:Waila:${WAILA_version}_${minecraft_version}:dev"
+    compile "net.industrial-craft:industrialcraft-2:${IC2_version}:dev"
+    compile "appeng:appliedenergistics2:${AE2_version}:dev"
 }
 
 def final_display_version = hasProperty("display_version") ? display_version : minecraft_version

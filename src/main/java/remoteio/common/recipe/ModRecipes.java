@@ -96,6 +96,16 @@ public class ModRecipes {
                 'S', Items.stick
         );
 
+        /*Testing Recipe
+        RecipeHelper.addOreRecipe(
+                new ItemStack(Items.diamond_sword),
+                " C ",
+                " C ",
+                " S ",
+                'C', Blocks.cobblestone,
+                'S', Items.stick
+        );
+        */
         // PDA
         RecipeHelper.addOreRecipe(
                 new ItemStack(ModItems.pda),
