@@ -10,7 +10,6 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
-import org.lwjgl.input.Keyboard;
 import remoteio.common.RemoteIO;
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.lib.DimensionalCoords;
@@ -58,8 +57,8 @@ extends Item{
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
         DimensionalCoords coords = ItemRemoteAccessor.getCoordinates(stack);
-        if(!Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-            if (coords != null) {
+        if(!player.isSneaking()){
+            if(coords != null) {
                 list.add("Dimension: " + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
                 list.add("X: " + coords.x + " Y: " + coords.y + " Z: " + coords.z);
             }

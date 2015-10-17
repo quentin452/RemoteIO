@@ -52,7 +52,7 @@ public class CommonProxy {
 
         Block block = proxyPlayer.worldObj.getBlock(x, y, z);
         if (block != null) {
-            proxyPlayer.theItemInWorldManager.activateBlockOrUseItem(proxyPlayer, proxyPlayer.worldObj, proxyPlayer.getHeldItem(), x, y, z, side, fx, fy, fz);
+            block.onBlockActivated(proxyPlayer.worldObj, x, y, z, proxyPlayer, side, fx, fy, fz);
         }
 
         entityPlayerMP.theItemInWorldManager.thisPlayerMP = entityPlayerMP;
