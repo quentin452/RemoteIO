@@ -22,9 +22,22 @@ documentation.item.pda=PDA
 documentation.item.wirelessTransmitter=Wireless Transmitter
 documentation.item.wirelessLocationChip=Wireless Location Chip
 documentation.item.upgrades=Upgrades
+documentation.item.remoteAccessor=Remote Accessor
+documentation.item.linker=Linker
 
-documentation.block.remoteInterface.page.1=The Remote Interface is your core block in this mod. In short, it allows the user to access one block remote from great distances, as though the block were sitting right there.
+documentation.block.remoteInterface.page.1=The Remote Interface is the core block in this mod. In short, it allows the user to access one block remote from great distances, as though the block were sitting right there.
 documentation.block.remoteInventory.page.1=The Remote Inventory is quite similar to the Remote Interface, but instead of connecting to a block, it connects to a Player. Most transfer upgrades will also work, but may work in ways you may not expect
+documentation.block.skylight.page.1=The skylight is a purely aesthetic block in the mod. When placed it is dark and opaque, but when given a redstone signal will become transparent and all neighboring skylights will do the same.
+documentation.block.heater.page.1=The heater is a small machine meant to aid in automation. It's function is such that, when lava is adjacent to it on two or more sides, it will heat the furnace above it. At a slower pace than normal.
+documentation.block.reservoir.page.1=Similar to the heater the reservoir is a small machine. It's function is simply that when it has two or more water sources adjacent will act like a source block and output water to machines and pipes.
+documentation.block.intelligentWorkbench.page.1=The intelligent workbench is a more intelligent form of crafting table. It will do all of the normal functions of the crafting table as well as store the items in it. It also has the function of allowing items with conflicting recipes to be craftable.
+documentation.item.pda.page.1=The pda is what you are holding to read this with.
+documentation.item.ioTool.page.1=The IO Tool is the wrench of the mod. It is used to open up the inventories of the various machines and add and remove upgrades or modify camouflage settings.
+documentation.item.wirelessTransmitter.page.1=This item is used in the crafting of the remote inventory, and in the assigning of the remote inventory if gotten in creative.
+documentation.item.upgrades.page.1=Upgrades simply put are what allow your remote inventory and interface to function. Without them the blocks cannot do much. Each upgrade does something different and some are there for mod compatibility.
+documentation.item.remoteAccessor.page.1=The Remote Accessor is an item that can be bound to a block in the world. When right clicking on any other (non-tile entity) block in the world it will function as if you click on that block.
+documentation.item.linker.page.1=Currently only used in the crafting of the Remote Accessor
+documentation.item.wirelessLocationChip.page.1=Shift right click on a block to save the locations of that block. This can then be put into a remote interface to tell it what block it should interact with.
 
 # GUI
 container.remoteio.upgrade=Upgrade
