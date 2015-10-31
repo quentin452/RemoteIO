@@ -4,6 +4,7 @@ import appeng.api.AEApi;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.Item;
 import remoteio.common.core.TransferType;
 import remoteio.common.core.UpgradeType;
 import remoteio.common.core.helper.ModHelper;
@@ -56,8 +57,21 @@ public class ModRecipes {
                 'G', Blocks.gold_block
         );
 
+        // LINKER
+        RecipeHelper.addOreRecipe(
+                new ItemStack(ModItems.linker),
+                " G ",
+                "GEI",
+                " IR",
+                'G', Items.gold_ingot,
+                'E', Items.ender_pearl,
+                'I', Items.iron_ingot,
+                'R', Items.redstone
+        );
+
         // REMOTE ACCESSOR
-        RecipeHelper.addOreRecipe(new ItemStack(ModItems.remoteAccessor),
+        RecipeHelper.addOreRecipe(
+                new ItemStack(ModItems.remoteAccessor),
                 " I ",
                 "LCL",
                 " T ",
@@ -96,7 +110,7 @@ public class ModRecipes {
                 'S', Items.stick
         );
 
-        /*Testing Recipe
+/*        // Testing Recipe
         RecipeHelper.addOreRecipe(
                 new ItemStack(Items.diamond_sword),
                 " C ",
@@ -104,8 +118,8 @@ public class ModRecipes {
                 " S ",
                 'C', Blocks.cobblestone,
                 'S', Items.stick
-        );
-        */
+        );*/
+
         // PDA
         RecipeHelper.addOreRecipe(
                 new ItemStack(ModItems.pda),
@@ -158,7 +172,7 @@ public class ModRecipes {
                 'C', ModItems.locationChip
         );
 
-        // TRANSFER TYPE - WATER
+        // TRANSFER TYPE - FLUID
         RecipeHelper.addOreRecipe(
                 new ItemStack(ModItems.transferChip, 1, TransferType.MATTER_FLUID),
                 " B ",

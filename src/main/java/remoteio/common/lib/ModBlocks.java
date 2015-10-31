@@ -39,8 +39,8 @@ public class ModBlocks {
         GameRegistry.registerBlock(intelligentWorkbench, "intelligentWorkbench");
         GameRegistry.registerTileEntity(TileIntelligentWorkbench.class, "remoteio:intelligentWorkbench");
 
-//        transceiver = new BlockTransceiver().setBlockName("transceiver");
-//        GameRegistry.registerBlock(transceiver, ItemBlockTransceiver.class, "transceiver");
-//        GameRegistry.registerTileEntity(TileTransceiver.class, "remoteio:transceiver");
+/*        transceiver = new BlockTransceiver().setBlockName("transceiver");
+        GameRegistry.registerBlock(transceiver, ItemBlockTransceiver.class, "transceiver");
+        GameRegistry.registerTileEntity(TileTransceiver.class, "remoteio:transceiver");*/
     }
 }
