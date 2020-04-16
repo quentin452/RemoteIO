@@ -12,7 +12,7 @@ import java.util.LinkedList;
  */
 public class TextFormatter {
 
-    private static final char FORMATTING = '§';
+    private static final char FORMATTING = '\u00a7';
 
     public static LinkedList<FormattedString> format(String string) {
         return format(string, -1);
