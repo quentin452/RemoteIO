@@ -1,10 +1,10 @@
 [
 {
-	"modid": "RIO",
-	"name": "Remote IO",
+	"modid": "${modId}",
+	"name": "${modName}",
 	"description": "Remote IO lets the player think outside the blocks; no longer are you limited to only six sides. The concept is simple. The possibilities are endless.",
-	"version": "${version}",
-	"mcversion": "${mcversion}",
+	"version": "${modVersion}",
+	"mcversion": "${minecraftVersion}",
 	"url": "www.cyanidex.com",
 	"updateUrl": "",
 	"authorList": [
