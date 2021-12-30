@@ -1,6 +1,7 @@
 package remoteio.common.tile;
 
 import cpw.mods.fml.common.Optional;
+import remoteio.common.RemoteIO;
 import remoteio.common.lib.DependencyInfo;
 import remoteio.common.tile.core.TileCore;
 import ic2.api.energy.tile.IHeatSource;
@@ -19,6 +20,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileMachineHeater extends TileCore implements IHeatSource {
 
     public boolean filled = false;
+    public int heatUsed = 0;
 
     @Override
     public void writeCustomNBT(NBTTagCompound nbt) {
@@ -32,9 +34,12 @@ public class TileMachineHeater extends TileCore implements IHeatSource {
 
     @Override
     public void updateEntity() {
-        if (!worldObj.isRemote && worldObj.getTotalWorldTime() % 20 == 0) {
-            update();
-            if (filled) push();
+        if (!worldObj.isRemote) {
+            heatUsed = 0;
+            if (worldObj.getTotalWorldTime() % 20 == 0) {
+                update();
+                if (filled) push();
+            }
         }
     }
 
@@ -75,7 +80,10 @@ public class TileMachineHeater extends TileCore implements IHeatSource {
 
     @Override
     @Optional.Method(modid = DependencyInfo.ModIds.IC2)
-    public int requestHeat(ForgeDirection directionFrom, int requestheat) {
-        return filled ? requestheat : 0;
+    public int requestHeat(ForgeDirection directionFrom, int requestedHeat) {
+        if (!filled) return 0;
+        int used = Math.min(RemoteIO.heatProvided - heatUsed, requestedHeat);
+        heatUsed -= used;
+        return used;
     }
 }
