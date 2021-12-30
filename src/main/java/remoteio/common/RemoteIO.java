@@ -40,6 +40,8 @@ public class RemoteIO {
 
     public static LocalizationUpdater localizationUpdater;
 
+    public static int heatProvided = 100;
+
     public static Configuration configuration;
 
     @EventHandler
@@ -79,7 +81,8 @@ public class RemoteIO {
             FMLInterModComms.sendMessage("Waila", "register", "remoteio.common.core.compat.WailaProvider.registerProvider");
         }
 
-        localizationUpdater = new LocalizationUpdater("dmillerw", "RemoteIO", "17", "src/main/resources/assets/remoteio/lang/");
+        heatProvided = configuration.getInt("heatProvided", "balancing", 1000, 0, Integer.MAX_VALUE, "Max HU provided by Lava heater per tick");
+        localizationUpdater = new LocalizationUpdater("GTNewHorizons", "RemoteIO", "master", "src/main/resources/assets/remoteio/lang/");
         localizationUpdater.initializeThread(configuration);
 
         proxy.preInit(event);
