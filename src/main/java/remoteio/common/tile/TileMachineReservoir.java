@@ -72,7 +72,9 @@ public class TileMachineReservoir extends TileCore implements IFluidHandler {
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        return new FluidStack(FluidRegistry.WATER, resource.amount);
+        if (resource.getFluid().equals(FluidRegistry.WATER))
+            return new FluidStack(FluidRegistry.WATER, resource.amount);
+        else return null;
     }
 
     @Override
