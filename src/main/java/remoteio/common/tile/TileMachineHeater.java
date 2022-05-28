@@ -83,7 +83,7 @@ public class TileMachineHeater extends TileCore implements IHeatSource {
     public int requestHeat(ForgeDirection directionFrom, int requestedHeat) {
         if (!filled) return 0;
         int used = Math.min(RemoteIO.heatProvided - heatUsed, requestedHeat);
-        heatUsed -= used;
+        heatUsed += used;
         return used;
     }
 }
