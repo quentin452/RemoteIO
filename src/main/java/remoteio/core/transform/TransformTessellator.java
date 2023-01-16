@@ -1,12 +1,12 @@
 package remoteio.core.transform;
 
-import remoteio.core.MappingHelper;
-import remoteio.core.mapping.MappingConstants;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import remoteio.core.MappingHelper;
+import remoteio.core.mapping.MappingConstants;
 
 /**
  * @author dmillerw
@@ -34,13 +34,18 @@ public class TransformTessellator implements ITransformer {
         final String vertexState = MappingConstants.Type.get(MappingConstants.Type.TESSELLATOR_VERTEX_STATE);
 
         for (MethodNode methodNode : classNode.methods) {
-            if (MappingConstants.Method.equals(methodNode, MappingConstants.Method.GET_VERTEX_STATE, MappingConstants.Method.Desc.GET_VERTEX_STATE)) {
+            if (MappingConstants.Method.equals(
+                    methodNode,
+                    MappingConstants.Method.GET_VERTEX_STATE,
+                    MappingConstants.Method.Desc.GET_VERTEX_STATE)) {
                 getVertexStateNode = methodNode;
                 MappingHelper.logger.info("Found method 'getVertexState'");
-            } else if (MappingConstants.Method.equals(methodNode, MappingConstants.Method.ADD_VERTEX, MappingConstants.Method.Desc.ADD_VERTEX)) {
+            } else if (MappingConstants.Method.equals(
+                    methodNode, MappingConstants.Method.ADD_VERTEX, MappingConstants.Method.Desc.ADD_VERTEX)) {
                 addVertexNode = methodNode;
                 MappingHelper.logger.info("Found method 'addVertex'");
-            } else if (MappingConstants.Method.equals(methodNode, MappingConstants.Method.SET_NORMAL, MappingConstants.Method.Desc.SET_NORMAL)) {
+            } else if (MappingConstants.Method.equals(
+                    methodNode, MappingConstants.Method.SET_NORMAL, MappingConstants.Method.Desc.SET_NORMAL)) {
                 setNormalNode = methodNode;
                 MappingHelper.logger.info("Found method 'setNormal'");
             }
@@ -50,7 +55,8 @@ public class TransformTessellator implements ITransformer {
             InsnList insnList = new InsnList();
 
             insnList.add(new VarInsnNode(Opcodes.ALOAD, 0)); // Add this (tessellator instance) to stack
-            insnList.add(getFieldNode(tessellator, MappingConstants.Field.RAW_BUFFER_INDEX, "I")); // add rawBufferIndex variable
+            insnList.add(getFieldNode(
+                    tessellator, MappingConstants.Field.RAW_BUFFER_INDEX, "I")); // add rawBufferIndex variable
             insnList.add(new InsnNode(Opcodes.ICONST_1)); // add number 1 to stack
             LabelNode l1 = new LabelNode(new Label());
             insnList.add(new JumpInsnNode(Opcodes.IF_ICMPGE, l1)); // if rawBufferIndex is less than or equal to 1
@@ -92,7 +98,8 @@ public class TransformTessellator implements ITransformer {
             insnList.add(new VarInsnNode(Opcodes.DLOAD, 5));
 
             // Invoke rotation method
-            insnList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, METHOD_HANDLER, "rotatePointWithOffset", "(DDD)[D", false));
+            insnList.add(new MethodInsnNode(
+                    Opcodes.INVOKESTATIC, METHOD_HANDLER, "rotatePointWithOffset", "(DDD)[D", false));
 
             insnList.add(new VarInsnNode(Opcodes.ASTORE, 6)); // Store returned array
 

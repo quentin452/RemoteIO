@@ -1,10 +1,5 @@
 package remoteio.client.gui;
 
-import remoteio.client.gui.button.GuiButtonCustom;
-import remoteio.common.core.helper.MatrixHelper;
-import remoteio.common.inventory.container.ContainerRemoteInterface;
-import remoteio.common.lib.ModInfo;
-import remoteio.common.tile.TileRemoteInterface;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -15,13 +10,19 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
+import remoteio.client.gui.button.GuiButtonCustom;
+import remoteio.common.core.helper.MatrixHelper;
+import remoteio.common.inventory.container.ContainerRemoteInterface;
+import remoteio.common.lib.ModInfo;
+import remoteio.common.tile.TileRemoteInterface;
 
 /**
  * @author dmillerw
  */
 public class GuiRemoteInterface extends GuiContainer {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(ModInfo.RESOURCE_PREFIX + "textures/gui/upgrade_display.png");
+    public static final ResourceLocation TEXTURE =
+            new ResourceLocation(ModInfo.RESOURCE_PREFIX + "textures/gui/upgrade_display.png");
 
     private final TileRemoteInterface tile;
 
@@ -44,8 +45,16 @@ public class GuiRemoteInterface extends GuiContainer {
     public void initGui() {
         super.initGui();
 
-        this.buttonList.add(new GuiButtonCustom(0, 39, 106, 17, 18).setTexture(TEXTURE).setNormalUV(196, 54).setHighlightUV(196, 72).setOffset(guiLeft, guiTop));
-        this.buttonList.add(new GuiButtonCustom(1, 141, 106, 17, 18).setTexture(TEXTURE).setNormalUV(213, 54).setHighlightUV(213, 72).setOffset(guiLeft, guiTop));
+        this.buttonList.add(new GuiButtonCustom(0, 39, 106, 17, 18)
+                .setTexture(TEXTURE)
+                .setNormalUV(196, 54)
+                .setHighlightUV(196, 72)
+                .setOffset(guiLeft, guiTop));
+        this.buttonList.add(new GuiButtonCustom(1, 141, 106, 17, 18)
+                .setTexture(TEXTURE)
+                .setNormalUV(213, 54)
+                .setHighlightUV(213, 72)
+                .setOffset(guiLeft, guiTop));
     }
 
     @Override
@@ -70,13 +79,13 @@ public class GuiRemoteInterface extends GuiContainer {
         if (tile.remotePosition != null) {
             GL11.glPushMatrix();
             double scale = 32;
-            //FIXME: This is hard coded for a 32D scale
+            // FIXME: This is hard coded for a 32D scale
             GL11.glTranslated(k + (61 + 37.5), l + (71 + 37.5) - (scale / 2), scale);
             GL11.glScaled(scale, -scale, scale);
             MatrixHelper.loadMatrix(initialMatrix);
             GL11.glPushMatrix();
 
-            //TODO Properly allow for rendering even without upgrades
+            // TODO Properly allow for rendering even without upgrades
             TileEntityRendererDispatcher.instance.renderTileEntityAt(tile, -0.5, -0.5, -0.5, 0);
 
             GL11.glPopMatrix();

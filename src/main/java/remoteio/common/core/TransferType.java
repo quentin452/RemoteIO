@@ -1,14 +1,13 @@
 package remoteio.common.core;
 
+import static remoteio.common.lib.DependencyInfo.Paths.*;
+
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import java.util.Map;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraftforge.fluids.IFluidHandler;
-
-import java.util.Map;
-
-import static remoteio.common.lib.DependencyInfo.Paths.*;
 
 public class TransferType {
 
@@ -27,12 +26,21 @@ public class TransferType {
     // MISC
     public static final int NETWORK_AE = 20;
     public static final int REDSTONE = 21;
+
     static {
         registerType(MATTER_ITEM, IInventory.class, ISidedInventory.class);
         registerType(MATTER_FLUID, IFluidHandler.class);
-        registerType(MATTER_ESSENTIA, Thaumcraft.IASPECTCONTAINER, Thaumcraft.IASPECTSOURCE, Thaumcraft.IESSENTIATRANSPORT);
+        registerType(
+                MATTER_ESSENTIA, Thaumcraft.IASPECTCONTAINER, Thaumcraft.IASPECTSOURCE, Thaumcraft.IESSENTIATRANSPORT);
 
-        registerType(ENERGY_IC2, IC2.IENERGYTILE, IC2.IENERGYSOURCE, IC2.IENERGYEMITTER, IC2.IENERGYSINK, IC2.IENERGYACCEPTOR, IC2.IENERGYSTORAGE);
+        registerType(
+                ENERGY_IC2,
+                IC2.IENERGYTILE,
+                IC2.IENERGYSOURCE,
+                IC2.IENERGYEMITTER,
+                IC2.IENERGYSINK,
+                IC2.IENERGYACCEPTOR,
+                IC2.IENERGYSTORAGE);
         registerType(ENERGY_RF, COFH.IENERGYHANDLER);
 
         registerType(NETWORK_AE, AE2.IGRIDHOST, AE2.IGRIDBLOCK);
@@ -40,13 +48,13 @@ public class TransferType {
 
     public static void registerType(int type, Class... classes) {
         String[] names = new String[classes.length];
-        for (int i=0; i<classes.length; i++) {
+        for (int i = 0; i < classes.length; i++) {
             names[i] = classes[i].getName();
         }
         registerType(type, names);
     }
 
-    public static void registerType(int type, String ... classes) {
+    public static void registerType(int type, String... classes) {
         typeToInterfaceMap.put(type, classes);
     }
 

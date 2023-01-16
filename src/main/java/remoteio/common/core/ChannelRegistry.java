@@ -3,7 +3,10 @@ package remoteio.common.core;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import remoteio.common.lib.DimensionalCoords;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -11,11 +14,7 @@ import net.minecraft.world.storage.ISaveHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.world.WorldEvent;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
+import remoteio.common.lib.DimensionalCoords;
 
 /**
  * @author dmillerw
@@ -55,13 +54,11 @@ public class ChannelRegistry {
 
     @SubscribeEvent
     public void onWorldLoad(WorldEvent.Load event) {
-        if (event.world.provider.dimensionId != 0)
-            return;
+        if (event.world.provider.dimensionId != 0) return;
 
         File file = getFile(event.world.getSaveHandler());
 
-        if (!file.exists())
-            return;
+        if (!file.exists()) return;
 
         channelDataMap.clear();
         dirtyChannels.clear();
@@ -72,9 +69,10 @@ public class ChannelRegistry {
             if (nbtTagCompound != null) {
                 NBTTagList nbtTagList = nbtTagCompound.getTagList("data", Constants.NBT.TAG_COMPOUND);
 
-                for (int i=0; i<nbtTagList.tagCount(); i++) {
+                for (int i = 0; i < nbtTagList.tagCount(); i++) {
                     NBTTagCompound dataTag = nbtTagList.getCompoundTagAt(i);
-                    channelDataMap.put(dataTag.getInteger("channel"), DimensionalCoords.fromNBT(dataTag.getCompoundTag("coords")));
+                    channelDataMap.put(
+                            dataTag.getInteger("channel"), DimensionalCoords.fromNBT(dataTag.getCompoundTag("coords")));
                     dirtyChannels.add(dataTag.getInteger("channel"));
                 }
             }
@@ -85,8 +83,7 @@ public class ChannelRegistry {
 
     @SubscribeEvent
     public void onWorldSave(WorldEvent.Save event) {
-        if (event.world.provider.dimensionId != 0)
-            return;
+        if (event.world.provider.dimensionId != 0) return;
 
         File file = getFile(event.world.getSaveHandler());
 

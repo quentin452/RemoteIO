@@ -2,11 +2,6 @@ package remoteio.client.render;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLLog;
-import remoteio.common.block.core.BlockIOCore;
-import remoteio.client.helper.IORenderHelper;
-import remoteio.common.lib.DimensionalCoords;
-import remoteio.common.lib.VisualState;
-import remoteio.common.tile.TileRemoteInterface;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -18,6 +13,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import remoteio.client.helper.IORenderHelper;
+import remoteio.common.block.core.BlockIOCore;
+import remoteio.common.lib.DimensionalCoords;
+import remoteio.common.lib.VisualState;
+import remoteio.common.tile.TileRemoteInterface;
 
 /**
  * @author dmillerw
@@ -30,7 +30,9 @@ public class RenderTileRemoteInterface extends TileEntitySpecialRenderer {
     }
 
     public void renderRemoteInterfaceAt(TileRemoteInterface tile, double x, double y, double z, float partial) {
-        if (tile.remotePosition != null && tile.remotePosition.inWorld(tile.getWorldObj()) && tile.visualState.isCamouflage()) {
+        if (tile.remotePosition != null
+                && tile.remotePosition.inWorld(tile.getWorldObj())
+                && tile.visualState.isCamouflage()) {
             WorldClient worldClient = FMLClientHandler.instance().getWorldClient();
             DimensionalCoords there = tile.remotePosition;
 
@@ -47,12 +49,17 @@ public class RenderTileRemoteInterface extends TileEntitySpecialRenderer {
 
             if (remoteTile != null) {
                 try {
-                    TileEntityRendererDispatcher.instance.renderTileEntityAt(tile.remotePosition.getTileEntity(worldClient), 0, 0, 0, partial);
+                    TileEntityRendererDispatcher.instance.renderTileEntityAt(
+                            tile.remotePosition.getTileEntity(worldClient), 0, 0, 0, partial);
                 } catch (Exception ex) {
-                    FMLLog.warning("Failed to render " + tile.remotePosition.getTileEntity(worldClient).getClass().getSimpleName() + ". Reason: " + ex.getLocalizedMessage());
+                    FMLLog.warning("Failed to render "
+                            + tile.remotePosition
+                                    .getTileEntity(worldClient)
+                                    .getClass()
+                                    .getSimpleName() + ". Reason: " + ex.getLocalizedMessage());
 
                     // Maybe bring this back if becomes an issue
-//					tile.camoRenderLock = true;
+                    //					tile.camoRenderLock = true;
                     tile.markForRenderUpdate();
                 }
             }

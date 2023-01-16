@@ -1,11 +1,11 @@
 package remoteio.common.recipe;
 
-import remoteio.common.lib.ModItems;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import remoteio.common.lib.ModItems;
 
 /**
  * @author dmillerw
@@ -17,13 +17,12 @@ public class RecipeInhibitorApply implements IRecipe {
         int itemCount = 0;
         int inhibitorCount = 0;
 
-        for (int i=0; i<inventoryCrafting.getSizeInventory(); i++) {
+        for (int i = 0; i < inventoryCrafting.getSizeInventory(); i++) {
             ItemStack itemStack = inventoryCrafting.getStackInSlot(i);
             if (itemStack != null) {
                 itemCount++;
                 if (itemStack.getItem() == ModItems.interactionInhibitor) {
                     inhibitorCount++;
-
                 }
             }
         }
@@ -36,7 +35,7 @@ public class RecipeInhibitorApply implements IRecipe {
         ItemStack inhibitor = null;
         ItemStack applyStack = null;
 
-        for (int i=0; i<inventoryCrafting.getSizeInventory(); i++) {
+        for (int i = 0; i < inventoryCrafting.getSizeInventory(); i++) {
             ItemStack itemStack = inventoryCrafting.getStackInSlot(i);
             if (itemStack != null) {
                 if (itemStack.getItem() == ModItems.interactionInhibitor) {
@@ -47,7 +46,8 @@ public class RecipeInhibitorApply implements IRecipe {
             }
         }
 
-        NBTTagCompound nbtTagCompound = applyStack.hasTagCompound() ? applyStack.getTagCompound() : new NBTTagCompound();
+        NBTTagCompound nbtTagCompound =
+                applyStack.hasTagCompound() ? applyStack.getTagCompound() : new NBTTagCompound();
         if (inhibitor.getItemDamage() == 0 || inhibitor.getItemDamage() == 1) {
             nbtTagCompound.setByte("inhibit", (byte) 0);
         } else {

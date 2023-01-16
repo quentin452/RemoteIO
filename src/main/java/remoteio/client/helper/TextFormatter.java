@@ -1,11 +1,9 @@
 package remoteio.client.helper;
 
-import net.minecraft.client.gui.FontRenderer;
-
 import com.google.common.collect.Lists;
-
 import java.util.EnumSet;
 import java.util.LinkedList;
+import net.minecraft.client.gui.FontRenderer;
 
 /**
  * @author dmillerw
@@ -40,10 +38,12 @@ public class TextFormatter {
 
             boolean resetColor = false;
 
-            for (int i=0; i<word.length(); i++) {
+            for (int i = 0; i < word.length(); i++) {
                 char character = word.charAt(i);
                 if (overrideColor == -1 && character == '@') {
-                    boolean terminator = ((i == word.length() - 1) || ((word.charAt(i + 1) != '0') || word.length() <= i + 9) || activeColor != -1);
+                    boolean terminator = ((i == word.length() - 1)
+                            || ((word.charAt(i + 1) != '0') || word.length() <= i + 9)
+                            || activeColor != -1);
                     if (!terminator && activeColor != -1) {
                         // NESTED COLORS ARE BAD! STAHP!
                         activeColor = -1;
@@ -79,23 +79,21 @@ public class TextFormatter {
                 }
             }
 
-            if (overrideColor != -1)
-                activeColor = -1;
+            if (overrideColor != -1) activeColor = -1;
 
-            FormattedString formattedString = new FormattedString(stringBuilder.toString(), EnumSet.copyOf(formats), activeColor);
+            FormattedString formattedString =
+                    new FormattedString(stringBuilder.toString(), EnumSet.copyOf(formats), activeColor);
 
             formats.removeAll(toRemove);
             toRemove.clear();
 
-            if (resetColor)
-                activeColor = -1;
+            if (resetColor) activeColor = -1;
 
             formattedString.setContinuingFormat(formats, !resetColor);
             list.add(formattedString);
 
             activeFormats.clear();
             activeFormats.addAll(formats);
-
         }
 
         return list;

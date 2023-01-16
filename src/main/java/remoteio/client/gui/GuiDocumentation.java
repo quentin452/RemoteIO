@@ -1,5 +1,6 @@
 package remoteio.client.gui;
 
+import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
@@ -9,13 +10,10 @@ import remoteio.client.documentation.Documentation;
 import remoteio.client.documentation.DocumentationEntry;
 import remoteio.client.documentation.IDocumentationPage;
 
-import java.util.List;
-
 /**
  * @author dmillerw
  */
-public class GuiDocumentation
-extends GuiScreen {
+public class GuiDocumentation extends GuiScreen {
     private static final ResourceLocation TEXTURE = new ResourceLocation("remoteio:textures/gui/tablet_green.png");
 
     public static final int BACK_COLOR = 0x304029;
@@ -65,8 +63,7 @@ extends GuiScreen {
     public void updateScreen() {
         super.updateScreen();
 
-        if (currentPage != null)
-            currentPage.updateScreen(this);
+        if (currentPage != null) currentPage.updateScreen(this);
     }
 
     @Override
@@ -76,7 +73,10 @@ extends GuiScreen {
         mc.getTextureManager().bindTexture(TEXTURE);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, XSIZE, YSIZE);
 
-        if (mouseX >= guiLeft + HOME_X && mouseX <= guiLeft + HOME_X + HOME_WIDTH && mouseY >= guiTop + HOME_Y && mouseY <= guiTop + HOME_Y + HOME_HEIGHT) {
+        if (mouseX >= guiLeft + HOME_X
+                && mouseX <= guiLeft + HOME_X + HOME_WIDTH
+                && mouseY >= guiTop + HOME_Y
+                && mouseY <= guiTop + HOME_Y + HOME_HEIGHT) {
             drawTexturedModalRect(guiLeft + HOME_X, guiTop + HOME_Y, HOME_OVER_X, HOME_OVER_Y, HOME_WIDTH, HOME_HEIGHT);
         }
 
@@ -90,7 +90,8 @@ extends GuiScreen {
 
         if (currentCategory == null) {
             if (mouseX >= guiLeft + mousePadding && mouseX <= guiLeft + XSIZE - mousePadding) {
-                if (mouseY >= standardY - offset + SCREEN_Y + SCREEN_HEIGHT / 4 && mouseY <= standardY + offset * 3 + SCREEN_Y + SCREEN_HEIGHT / 4) {
+                if (mouseY >= standardY - offset + SCREEN_Y + SCREEN_HEIGHT / 4
+                        && mouseY <= standardY + offset * 3 + SCREEN_Y + SCREEN_HEIGHT / 4) {
                     selection = 0;
                     minY = standardY - offset + SCREEN_Y + SCREEN_HEIGHT / 4;
                     maxY = standardY + offset * 3 + SCREEN_Y + SCREEN_HEIGHT / 4;
@@ -98,7 +99,8 @@ extends GuiScreen {
                     selection = 1;
                     minY = standardY + middle - offset;
                     maxY = standardY + middle + offset * 3;
-                } else if (mouseY >= standardY - offset + middle + SCREEN_HEIGHT / 4 && mouseY <= standardY + offset * 3 + middle + SCREEN_HEIGHT / 4) {
+                } else if (mouseY >= standardY - offset + middle + SCREEN_HEIGHT / 4
+                        && mouseY <= standardY + offset * 3 + middle + SCREEN_HEIGHT / 4) {
                     selection = 2;
                     minY = standardY - offset + middle + SCREEN_HEIGHT / 4;
                     maxY = standardY + offset * 3 + middle + SCREEN_HEIGHT / 4;
@@ -118,37 +120,63 @@ extends GuiScreen {
             tessellator.draw();
             GL11.glEnable(GL11.GL_TEXTURE_2D);
 
-            mc.fontRenderer.drawString("BLOCK", centeredX("BLOCK"), guiTop - offset + SCREEN_Y + SCREEN_HEIGHT / 4, selection == 0 ? TEXT_HIGHLIGHT_COLOR : TEXT_COLOR);
-            mc.fontRenderer.drawString("ITEM", centeredX("ITEM"), guiTop - offset + middle, selection == 1 ? TEXT_HIGHLIGHT_COLOR : TEXT_COLOR);
-            mc.fontRenderer.drawString("OTHER", centeredX("OTHER"), guiTop - offset + middle + SCREEN_HEIGHT / 4, selection == 2 ? TEXT_HIGHLIGHT_COLOR : TEXT_COLOR);
+            mc.fontRenderer.drawString(
+                    "BLOCK",
+                    centeredX("BLOCK"),
+                    guiTop - offset + SCREEN_Y + SCREEN_HEIGHT / 4,
+                    selection == 0 ? TEXT_HIGHLIGHT_COLOR : TEXT_COLOR);
+            mc.fontRenderer.drawString(
+                    "ITEM",
+                    centeredX("ITEM"),
+                    guiTop - offset + middle,
+                    selection == 1 ? TEXT_HIGHLIGHT_COLOR : TEXT_COLOR);
+            mc.fontRenderer.drawString(
+                    "OTHER",
+                    centeredX("OTHER"),
+                    guiTop - offset + middle + SCREEN_HEIGHT / 4,
+                    selection == 2 ? TEXT_HIGHLIGHT_COLOR : TEXT_COLOR);
         } else if (currentEntry == null) {
-            mc.fontRenderer.drawString(currentCategory.name() + ":", centeredX(currentCategory.name() + ":"), guiTop + SCREEN_Y + 5, TEXT_COLOR);
+            mc.fontRenderer.drawString(
+                    currentCategory.name() + ":",
+                    centeredX(currentCategory.name() + ":"),
+                    guiTop + SCREEN_Y + 5,
+                    TEXT_COLOR);
 
             if (categoryCache != null && !categoryCache.isEmpty()) {
-                for (int i=0; i<categoryCache.size(); i++) {
+                for (int i = 0; i < categoryCache.size(); i++) {
                     DocumentationEntry entry = categoryCache.get(i);
-                    String localizedName = StatCollector.translateToLocal(entry.getUnlocalizedName()).toUpperCase();
+                    String localizedName = StatCollector.translateToLocal(entry.getUnlocalizedName())
+                            .toUpperCase();
                     if (mc.fontRenderer.getStringWidth(localizedName) >= SCREEN_WIDTH) {
-                        localizedName = mc.fontRenderer.trimStringToWidth(localizedName, SCREEN_WIDTH - (mc.fontRenderer.getStringWidth(".....")));
+                        localizedName = mc.fontRenderer.trimStringToWidth(
+                                localizedName, SCREEN_WIDTH - (mc.fontRenderer.getStringWidth(".....")));
                         localizedName = localizedName + "...";
                     }
-                    boolean selected = mouseX >= guiLeft + mousePadding && mouseX <= guiLeft + XSIZE - mousePadding && mouseY >= guiTop + SCREEN_Y + 20 + (15 * i) && mouseY <= guiTop + SCREEN_Y + 20 + (15 * i) + 10;
+                    boolean selected = mouseX >= guiLeft + mousePadding
+                            && mouseX <= guiLeft + XSIZE - mousePadding
+                            && mouseY >= guiTop + SCREEN_Y + 20 + (15 * i)
+                            && mouseY <= guiTop + SCREEN_Y + 20 + (15 * i) + 10;
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     Tessellator tessellator = Tessellator.instance;
                     tessellator.startDrawingQuads();
                     tessellator.setColorOpaque_I(BACK_COLOR);
                     if (selected) {
                         tessellator.addVertex(guiLeft + mousePadding, guiTop + SCREEN_Y + 20 + (15 * i) + 10, 0);
-                        tessellator.addVertex(guiLeft + XSIZE - mousePadding, guiTop + SCREEN_Y + 20 + (15 * i) + 10, 0);
+                        tessellator.addVertex(
+                                guiLeft + XSIZE - mousePadding, guiTop + SCREEN_Y + 20 + (15 * i) + 10, 0);
                         tessellator.addVertex(guiLeft + XSIZE - mousePadding, guiTop + SCREEN_Y + 20 + (15 * i), 0);
                         tessellator.addVertex(guiLeft + mousePadding, guiTop + SCREEN_Y + 20 + (15 * i), 0);
                     }
                     tessellator.draw();
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
-                    mc.fontRenderer.drawString(localizedName, centeredX(localizedName), guiTop + SCREEN_Y + 20 + (15 * i), selected ? TEXT_HIGHLIGHT_COLOR : TEXT_COLOR);
+                    mc.fontRenderer.drawString(
+                            localizedName,
+                            centeredX(localizedName),
+                            guiTop + SCREEN_Y + 20 + (15 * i),
+                            selected ? TEXT_HIGHLIGHT_COLOR : TEXT_COLOR);
                 }
             }
-        } else if(currentPage == null){
+        } else if (currentPage == null) {
             this.currentPage = this.currentEntry.pages.getFirst();
         }
 
@@ -171,11 +199,13 @@ extends GuiScreen {
 
             if (currentCategory == null) {
                 if (mouseX >= guiLeft + mousePadding && mouseX <= guiLeft + XSIZE - mousePadding) {
-                    if (mouseY >= standardY - offset + SCREEN_Y + SCREEN_HEIGHT / 4 && mouseY <= standardY + offset * 3 + SCREEN_Y + SCREEN_HEIGHT / 4) {
+                    if (mouseY >= standardY - offset + SCREEN_Y + SCREEN_HEIGHT / 4
+                            && mouseY <= standardY + offset * 3 + SCREEN_Y + SCREEN_HEIGHT / 4) {
                         selection = 0;
                     } else if (mouseY >= standardY + middle - offset && mouseY <= standardY + middle + offset * 3) {
                         selection = 1;
-                    } else if (mouseY >= standardY - offset + middle + SCREEN_HEIGHT / 4 && mouseY <= standardY + offset * 3 + middle + SCREEN_HEIGHT / 4) {
+                    } else if (mouseY >= standardY - offset + middle + SCREEN_HEIGHT / 4
+                            && mouseY <= standardY + offset * 3 + middle + SCREEN_HEIGHT / 4) {
                         selection = 2;
                     }
                 }
@@ -197,11 +227,14 @@ extends GuiScreen {
                 if (currentCategory != null) {
                     this.categoryCache = Documentation.get(currentCategory);
                 }
-            } else if(currentEntry == null){
+            } else if (currentEntry == null) {
                 this.currentEntry = getEntry(mouseX, mouseY);
             }
 
-            if (mouseX >= guiLeft + HOME_X && mouseX <= guiLeft + HOME_X + HOME_WIDTH && mouseY >= guiTop + HOME_Y && mouseY <= guiTop + HOME_Y + HOME_HEIGHT) {
+            if (mouseX >= guiLeft + HOME_X
+                    && mouseX <= guiLeft + HOME_X + HOME_WIDTH
+                    && mouseY >= guiTop + HOME_Y
+                    && mouseY <= guiTop + HOME_Y + HOME_HEIGHT) {
                 this.currentCategory = null;
                 this.categoryCache = null;
                 this.currentEntry = null;
@@ -210,15 +243,18 @@ extends GuiScreen {
         }
     }
 
-    private DocumentationEntry getEntry(int x, int y){
-        if(this.categoryCache == null){
+    private DocumentationEntry getEntry(int x, int y) {
+        if (this.categoryCache == null) {
             return null;
         }
 
         int mousePadding = 25;
-        for(int i = 0; i < this.categoryCache.size(); i++){
-            boolean selected = x >= guiLeft + mousePadding && x <= guiLeft + XSIZE - mousePadding && y >= guiTop + SCREEN_Y + 20 + (15 * i) && y <= guiTop + SCREEN_Y + 20 + (15 * i) + 10;
-            if(selected){
+        for (int i = 0; i < this.categoryCache.size(); i++) {
+            boolean selected = x >= guiLeft + mousePadding
+                    && x <= guiLeft + XSIZE - mousePadding
+                    && y >= guiTop + SCREEN_Y + 20 + (15 * i)
+                    && y <= guiTop + SCREEN_Y + 20 + (15 * i) + 10;
+            if (selected) {
                 return this.categoryCache.get(i);
             }
         }

@@ -1,13 +1,12 @@
 package remoteio.common.core.helper;
 
+import java.util.Random;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.Random;
 
 /**
  * @author dmillerw
@@ -28,7 +27,8 @@ public class InventoryHelper {
         return items;
     }
 
-    public static boolean containsStack(IInventory inventory, ItemStack stack, boolean compareMeta, boolean compareNBT) {
+    public static boolean containsStack(
+            IInventory inventory, ItemStack stack, boolean compareMeta, boolean compareNBT) {
         ItemStack[] items = toArray(inventory);
 
         for (int i = 0; i < items.length; i++) {
@@ -36,7 +36,10 @@ public class InventoryHelper {
 
             if (item != null) {
                 if (stack.getItem() == item.getItem()) {
-                    if (!compareMeta || (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE || item.getItemDamage() == OreDictionary.WILDCARD_VALUE) || stack.getItemDamage() == item.getItemDamage()) {
+                    if (!compareMeta
+                            || (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE
+                                    || item.getItemDamage() == OreDictionary.WILDCARD_VALUE)
+                            || stack.getItemDamage() == item.getItemDamage()) {
                         if (!compareNBT || (ItemStack.areItemStacksEqual(stack, item))) {
                             return true;
                         }
@@ -65,10 +68,16 @@ public class InventoryHelper {
                     }
 
                     stack.stackSize -= j1;
-                    EntityItem entityitem = new EntityItem(world, (double) ((float) x + f), (double) ((float) y + f1), (double) ((float) z + f2), new ItemStack(stack.getItem(), j1, stack.getItemDamage()));
+                    EntityItem entityitem = new EntityItem(
+                            world,
+                            (double) ((float) x + f),
+                            (double) ((float) y + f1),
+                            (double) ((float) z + f2),
+                            new ItemStack(stack.getItem(), j1, stack.getItemDamage()));
 
                     if (stack.hasTagCompound()) {
-                        entityitem.getEntityItem().setTagCompound((NBTTagCompound) stack.getTagCompound().copy());
+                        entityitem.getEntityItem().setTagCompound((NBTTagCompound)
+                                stack.getTagCompound().copy());
                     }
 
                     float f3 = 0.05F;

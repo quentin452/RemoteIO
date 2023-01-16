@@ -2,15 +2,15 @@ package remoteio.common.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import remoteio.common.RemoteIO;
-import remoteio.common.core.TabRemoteIO;
-import remoteio.common.core.handler.GuiHandler;
-import remoteio.common.tile.TileTransceiver;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import remoteio.common.RemoteIO;
+import remoteio.common.core.TabRemoteIO;
+import remoteio.common.core.handler.GuiHandler;
+import remoteio.common.tile.TileTransceiver;
 
 /**
  * @author dmillerw
@@ -26,7 +26,8 @@ public class BlockTransceiver extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float fx, float fy, float fz) {
+    public boolean onBlockActivated(
+            World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float fx, float fy, float fz) {
         if (!entityPlayer.isSneaking()) {
             entityPlayer.openGui(RemoteIO.instance, GuiHandler.GUI_SET_CHANNEL, world, x, y, z);
             return true;
@@ -42,15 +43,13 @@ public class BlockTransceiver extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public boolean isOpaqueCube()
-    {
+    public boolean isOpaqueCube() {
         return false;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public boolean renderAsNormalBlock()
-    {
+    public boolean renderAsNormalBlock() {
         return false;
     }
 

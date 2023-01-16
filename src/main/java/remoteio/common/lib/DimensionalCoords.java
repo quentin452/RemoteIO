@@ -1,11 +1,11 @@
 package remoteio.common.lib;
 
-import remoteio.common.RemoteIO;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import remoteio.common.RemoteIO;
 
 /**
  * @author dmillerw
@@ -19,9 +19,9 @@ public class DimensionalCoords {
         return new DimensionalCoords(entity.worldObj, entity.posX, entity.posY, entity.posZ);
     }
 
-
     public static DimensionalCoords fromNBT(NBTTagCompound nbt) {
-        return new DimensionalCoords(nbt.getInteger("dimension"), nbt.getInteger("x"), nbt.getInteger("y"), nbt.getInteger("z"));
+        return new DimensionalCoords(
+                nbt.getInteger("dimension"), nbt.getInteger("x"), nbt.getInteger("y"), nbt.getInteger("z"));
     }
 
     public int dimensionID;
@@ -126,16 +126,14 @@ public class DimensionalCoords {
             return false;
         }
 
-        return equals((DimensionalCoords)obj);
+        return equals((DimensionalCoords) obj);
     }
 
     public boolean equals(DimensionalCoords coords) {
-        return (
-                (this.dimensionID == coords.dimensionID) &&
-                        (this.x == coords.x) &&
-                        (this.y == coords.y) &&
-                        (this.z == coords.z)
-        );
+        return ((this.dimensionID == coords.dimensionID)
+                && (this.x == coords.x)
+                && (this.y == coords.y)
+                && (this.z == coords.z));
     }
 
     @Override

@@ -10,11 +10,13 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.config.Configuration;
 import remoteio.common.block.BlockRemoteInterface;
 import remoteio.common.core.ChannelRegistry;
 import remoteio.common.core.handler.*;
 import remoteio.common.core.helper.EventHelper;
-import remoteio.common.tracker.BlockTracker;
 import remoteio.common.lib.ModBlocks;
 import remoteio.common.lib.ModInfo;
 import remoteio.common.lib.ModItems;
@@ -23,9 +25,7 @@ import remoteio.common.recipe.ModRecipes;
 import remoteio.common.recipe.RecipeCopyLocation;
 import remoteio.common.recipe.RecipeInhibitorApply;
 import remoteio.common.recipe.RecipeRemoteInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.config.Configuration;
+import remoteio.common.tracker.BlockTracker;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = ModInfo.DEPENDENCIES)
 public class RemoteIO {
@@ -78,11 +78,14 @@ public class RemoteIO {
         PacketHandler.initialize();
 
         if (Loader.isModLoaded("Waila")) {
-            FMLInterModComms.sendMessage("Waila", "register", "remoteio.common.core.compat.WailaProvider.registerProvider");
+            FMLInterModComms.sendMessage(
+                    "Waila", "register", "remoteio.common.core.compat.WailaProvider.registerProvider");
         }
 
-        heatProvided = configuration.getInt("heatProvided", "balancing", 1000, 0, Integer.MAX_VALUE, "Max HU provided by Lava heater per tick");
-        localizationUpdater = new LocalizationUpdater("GTNewHorizons", "RemoteIO", "master", "src/main/resources/assets/remoteio/lang/");
+        heatProvided = configuration.getInt(
+                "heatProvided", "balancing", 1000, 0, Integer.MAX_VALUE, "Max HU provided by Lava heater per tick");
+        localizationUpdater = new LocalizationUpdater(
+                "GTNewHorizons", "RemoteIO", "master", "src/main/resources/assets/remoteio/lang/");
         localizationUpdater.initializeThread(configuration);
 
         proxy.preInit(event);

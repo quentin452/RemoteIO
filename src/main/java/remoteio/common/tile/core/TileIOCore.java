@@ -1,13 +1,13 @@
 package remoteio.common.tile.core;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import remoteio.common.core.UpgradeType;
 import remoteio.common.core.helper.InventoryHelper;
 import remoteio.common.inventory.InventoryItem;
 import remoteio.common.inventory.InventoryNBT;
 import remoteio.common.lib.ModItems;
 import remoteio.common.lib.VisualState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 /**
  * @author dmillerw
@@ -98,12 +98,12 @@ public abstract class TileIOCore extends TileCore implements InventoryNBT.IInven
         sendClientUpdate(nbt);
     }
 
-	/* BEGIN CLIENT UPDATE METHODS
+    /* BEGIN CLIENT UPDATE METHODS
      * 'update' methods are used to calculate what should be sent to the client
-	 * 'send' methods actually send the data to the client, and take a single parameter
-	 *  that is the data to be sent
-	 *
-	 *  Methods pertaining to the same data are lumped together */
+     * 'send' methods actually send the data to the client, and take a single parameter
+     *  that is the data to be sent
+     *
+     *  Methods pertaining to the same data are lumped together */
 
     public abstract VisualState calculateVisualState();
 
@@ -127,5 +127,5 @@ public abstract class TileIOCore extends TileCore implements InventoryNBT.IInven
         }
     }
 
-	/* END CLIENT UPDATE METHODS */
+    /* END CLIENT UPDATE METHODS */
 }

@@ -3,12 +3,11 @@ package remoteio.common.network.packet;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import java.io.IOException;
+import net.minecraft.item.ItemStack;
 import remoteio.common.RemoteIO;
 import remoteio.common.network.VanillaPacketHelper;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.item.ItemStack;
-
-import java.io.IOException;
 
 /**
  * @author dmillerw
@@ -18,9 +17,7 @@ public class PacketClientForceSlot implements IMessage, IMessageHandler<PacketCl
     public int slot;
     public ItemStack itemStack;
 
-    public PacketClientForceSlot() {
-
-    }
+    public PacketClientForceSlot() {}
 
     public PacketClientForceSlot(int slot, ItemStack itemStack) {
         this.slot = slot;

@@ -1,10 +1,10 @@
 package remoteio.common.inventory.container.core;
 
-import remoteio.common.inventory.InventoryItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import remoteio.common.inventory.InventoryItem;
 
 /**
  * @author dmillerw
@@ -35,7 +35,8 @@ public class ContainerItem extends Container {
             itemstack = itemstack1.copy();
 
             if (id < 9) {
-                if (!this.mergeItemStack(itemstack1, inventory.getSizeInventory(), 36 + inventory.getSizeInventory(), true)) {
+                if (!this.mergeItemStack(
+                        itemstack1, inventory.getSizeInventory(), 36 + inventory.getSizeInventory(), true)) {
                     return null;
                 }
             } else if (!this.mergeItemStack(itemstack1, 0, inventory.getSizeInventory(), false)) {

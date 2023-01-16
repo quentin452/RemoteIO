@@ -1,12 +1,5 @@
 package remoteio.common.item;
 
-import remoteio.common.RemoteIO;
-import remoteio.common.core.TabRemoteIO;
-import remoteio.common.core.UpgradeType;
-import remoteio.common.core.handler.GuiHandler;
-import remoteio.common.lib.ModInfo;
-import remoteio.common.tile.TileRemoteInterface;
-import remoteio.common.tile.core.TileIOCore;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,34 +8,42 @@ import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import remoteio.common.RemoteIO;
+import remoteio.common.core.TabRemoteIO;
+import remoteio.common.core.UpgradeType;
+import remoteio.common.core.handler.GuiHandler;
+import remoteio.common.lib.ModInfo;
+import remoteio.common.tile.TileRemoteInterface;
+import remoteio.common.tile.core.TileIOCore;
 
 /**
  * @author dmillerw
  */
-public class ItemUpgradeChip
-extends ItemSelectiveMeta {
+public class ItemUpgradeChip extends ItemSelectiveMeta {
     private IIcon[] icons;
 
     public ItemUpgradeChip() {
         super(
-                new int[]{
-                    UpgradeType.REMOTE_CAMO,
-                    UpgradeType.REMOTE_ACCESS,
-                    UpgradeType.SIMPLE_CAMO,
+                new int[] {
+                    UpgradeType.REMOTE_CAMO, UpgradeType.REMOTE_ACCESS, UpgradeType.SIMPLE_CAMO,
                 },
-
-                new String[]{
-                    "remote_camo",
-                    "remote_access",
-                    "simple_camo"
-                }
-        );
+                new String[] {"remote_camo", "remote_access", "simple_camo"});
 
         setCreativeTab(TabRemoteIO.TAB);
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUseFirst(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(x, y, z);
 
@@ -53,7 +54,8 @@ extends ItemSelectiveMeta {
                     ItemStack chip = stack.copy();
                     chip.stackSize = 1;
 
-                    if (TileEntityHopper.func_145889_a(io.upgradeChips, chip, ForgeDirection.UNKNOWN.ordinal()) == null) {
+                    if (TileEntityHopper.func_145889_a(io.upgradeChips, chip, ForgeDirection.UNKNOWN.ordinal())
+                            == null) {
                         io.callback(io.upgradeChips);
                         if (stack.stackSize == 1) {
                             player.setCurrentItemOrArmor(0, null);
@@ -65,8 +67,7 @@ extends ItemSelectiveMeta {
                         return true;
                     }
 
-                    if (io instanceof TileRemoteInterface)
-                        ((TileRemoteInterface) io).updateRemotePosition();
+                    if (io instanceof TileRemoteInterface) ((TileRemoteInterface) io).updateRemotePosition();
                     io.updateVisualState();
                     io.markForUpdate();
                 }

@@ -1,7 +1,5 @@
 package remoteio.client.gui;
 
-import remoteio.client.gui.button.GuiBetterButton;
-import remoteio.common.inventory.container.ContainerIntelligentWorkbench;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
@@ -9,6 +7,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import remoteio.client.gui.button.GuiBetterButton;
+import remoteio.common.inventory.container.ContainerIntelligentWorkbench;
 
 /**
  * @author dmillerw
@@ -35,9 +35,9 @@ public class GuiIntelligentWorkbench extends GuiContainer {
 
     @Override
     public void updateScreen() {
-        if (((ContainerIntelligentWorkbench)inventorySlots).resultChanged) {
+        if (((ContainerIntelligentWorkbench) inventorySlots).resultChanged) {
             recipeIndex = 0;
-            ((ContainerIntelligentWorkbench)inventorySlots).resultChanged = false;
+            ((ContainerIntelligentWorkbench) inventorySlots).resultChanged = false;
         }
 
         if (recipeIndex <= 0) {
@@ -46,7 +46,7 @@ public class GuiIntelligentWorkbench extends GuiContainer {
             buttonPrevious.enabled = true;
         }
 
-        if (recipeIndex >= ((ContainerIntelligentWorkbench)inventorySlots).resultCount - 1) {
+        if (recipeIndex >= ((ContainerIntelligentWorkbench) inventorySlots).resultCount - 1) {
             buttonNext.enabled = false;
         } else {
             buttonNext.enabled = true;
@@ -71,7 +71,7 @@ public class GuiIntelligentWorkbench extends GuiContainer {
             buttonPrevious.enabled = true;
         }
 
-        if (recipeIndex >= ((ContainerIntelligentWorkbench)inventorySlots).resultCount) {
+        if (recipeIndex >= ((ContainerIntelligentWorkbench) inventorySlots).resultCount) {
             buttonNext.enabled = false;
         } else {
             buttonNext.enabled = true;

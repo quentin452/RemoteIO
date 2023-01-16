@@ -16,8 +16,7 @@ import remoteio.common.lib.ModInfo;
 /**
  * @author dmillerw
  */
-public class ItemWirelessLocationChip
-extends Item {
+public class ItemWirelessLocationChip extends Item {
     public static int getChannel(ItemStack itemStack) {
         if (!itemStack.hasTagCompound()) {
             itemStack.setTagCompound(new NBTTagCompound());
@@ -48,10 +47,21 @@ extends Item {
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUseFirst(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
         if (!world.isRemote) {
             if (!player.isSneaking()) {
-                RemoteIO.channelRegistry.setChannelData(getChannel(stack), new DimensionalCoords(world.provider.dimensionId, x, y, z));
+                RemoteIO.channelRegistry.setChannelData(
+                        getChannel(stack), new DimensionalCoords(world.provider.dimensionId, x, y, z));
                 player.addChatComponentMessage(new ChatComponentTranslation("chat.target.save"));
             }
         }
