@@ -1,10 +1,10 @@
 package remoteio.common.inventory.container;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Slot;
 import remoteio.common.inventory.InventoryItem;
 import remoteio.common.inventory.container.core.ContainerItemPhantom;
 import remoteio.common.inventory.container.slot.SlotPhantom;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Slot;
 
 /**
  * @author dmillerw

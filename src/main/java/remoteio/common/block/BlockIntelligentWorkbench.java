@@ -1,11 +1,5 @@
 package remoteio.common.block;
 
-import remoteio.common.RemoteIO;
-import remoteio.common.core.TabRemoteIO;
-import remoteio.common.core.handler.GuiHandler;
-import remoteio.common.core.helper.InventoryHelper;
-import remoteio.common.lib.ModInfo;
-import remoteio.common.tile.TileIntelligentWorkbench;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -14,6 +8,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import remoteio.common.RemoteIO;
+import remoteio.common.core.TabRemoteIO;
+import remoteio.common.core.handler.GuiHandler;
+import remoteio.common.core.helper.InventoryHelper;
+import remoteio.common.lib.ModInfo;
+import remoteio.common.tile.TileIntelligentWorkbench;
 
 /**
  * @author dmillerw
@@ -33,7 +33,8 @@ public class BlockIntelligentWorkbench extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy, float fz) {
+    public boolean onBlockActivated(
+            World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy, float fz) {
         player.openGui(RemoteIO.instance, GuiHandler.GUI_INTELLIGENT_WORKBENCH, world, x, y, z);
         return true;
     }

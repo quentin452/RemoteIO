@@ -3,12 +3,12 @@ package remoteio.common.network.packet;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import remoteio.common.core.TransferType;
-import remoteio.common.lib.ModItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import remoteio.common.core.TransferType;
+import remoteio.common.lib.ModItems;
 
 /**
  * @author dmillerw
@@ -31,7 +31,9 @@ public class PacketServerApplyRFConfig implements IMessage, IMessageHandler<Pack
     public IMessage onMessage(PacketServerApplyRFConfig message, MessageContext ctx) {
         EntityPlayerMP entityPlayerMP = ctx.getServerHandler().playerEntity;
         ItemStack itemStack = entityPlayerMP.getHeldItem();
-        if (itemStack != null && itemStack.getItem() == ModItems.transferChip && itemStack.getItemDamage() == TransferType.ENERGY_RF) {
+        if (itemStack != null
+                && itemStack.getItem() == ModItems.transferChip
+                && itemStack.getItemDamage() == TransferType.ENERGY_RF) {
             NBTTagCompound nbtTagCompound = new NBTTagCompound();
             if (itemStack.hasTagCompound()) {
                 nbtTagCompound = itemStack.getTagCompound();

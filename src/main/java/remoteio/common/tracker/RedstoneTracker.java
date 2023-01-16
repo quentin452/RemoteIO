@@ -2,12 +2,12 @@ package remoteio.common.tracker;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import remoteio.common.core.TransferType;
-import remoteio.common.lib.DimensionalCoords;
-import remoteio.common.tile.TileRemoteInterface;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import remoteio.common.core.TransferType;
+import remoteio.common.lib.DimensionalCoords;
+import remoteio.common.tile.TileRemoteInterface;
 
 /**
  * @author dmillerw
@@ -43,18 +43,24 @@ public class RedstoneTracker {
 
         int level = 0;
         if (tileCoords != null) {
-            level = default_getIndirectPowerLevelTo(tileCoords.getWorld(), tileCoords.x + forgeDirection.getOpposite().offsetX, tileCoords.y + forgeDirection.getOpposite().offsetY, tileCoords.z + forgeDirection.getOpposite().offsetZ, side);
+            level = default_getIndirectPowerLevelTo(
+                    tileCoords.getWorld(),
+                    tileCoords.x + forgeDirection.getOpposite().offsetX,
+                    tileCoords.y + forgeDirection.getOpposite().offsetY,
+                    tileCoords.z + forgeDirection.getOpposite().offsetZ,
+                    side);
         }
 
         int local = default_getIndirectPowerLevelTo(world, x, y, z, side);
-        if (local > level)
-            level = local;
+        if (local > level) level = local;
 
         return level;
     }
 
     private static int default_getIndirectPowerLevelTo(World world, int x, int y, int z, int side) {
         Block block = world.getBlock(x, y, z);
-        return block.shouldCheckWeakPower(world, x, y, z, side) ? world.getBlockPowerInput(x, y, z) : block.isProvidingWeakPower(world, x, y, z, side);
+        return block.shouldCheckWeakPower(world, x, y, z, side)
+                ? world.getBlockPowerInput(x, y, z)
+                : block.isProvidingWeakPower(world, x, y, z, side);
     }
 }

@@ -1,5 +1,6 @@
 package remoteio.common.item;
 
+import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -19,31 +20,28 @@ import remoteio.common.lib.ModInfo;
 import remoteio.common.lib.ModItems;
 import remoteio.common.tile.TileRemoteInterface;
 
-import java.util.List;
-
 /**
  * @author dmillerw
  */
-public class ItemWirelessTransmitter
-extends Item {
+public class ItemWirelessTransmitter extends Item {
     private final IIcon[] icons = new IIcon[2];
 
     @Override
-    public IIcon getIconIndex(ItemStack stack){
+    public IIcon getIconIndex(ItemStack stack) {
         boolean bound = getPlayerName(stack) != null;
-        if(bound){
+        if (bound) {
             return icons[1];
-        } else{
+        } else {
             return icons[0];
         }
     }
 
     @Override
-    public IIcon getIcon(ItemStack stack, int pass){
+    public IIcon getIcon(ItemStack stack, int pass) {
         boolean bound = getPlayerName(stack) != null;
-        if(bound){
+        if (bound) {
             return icons[1];
-        } else{
+        } else {
             return icons[0];
         }
     }
@@ -117,18 +115,18 @@ extends Item {
 
     public static float[] getHitCoordinates(ItemStack stack) {
         if (!stack.hasTagCompound()) {
-            return new float[]{0, 0, 0};
+            return new float[] {0, 0, 0};
         }
 
         NBTTagCompound nbt = stack.getTagCompound();
 
         if (!nbt.hasKey("hit")) {
-            return new float[]{0, 0, 0};
+            return new float[] {0, 0, 0};
         }
 
         NBTTagCompound hit = nbt.getCompoundTag("hit");
 
-        return new float[]{hit.getFloat("x"), hit.getFloat("y"), hit.getFloat("z")};
+        return new float[] {hit.getFloat("x"), hit.getFloat("y"), hit.getFloat("z")};
     }
 
     public static String getPlayerName(ItemStack stack) {
@@ -167,11 +165,12 @@ extends Item {
         String bound = getPlayerName(stack);
 
         if (coords != null) {
-            list.add(String.format(StatCollector.translateToLocal("tooltip.dimension"), DimensionManager.getProvider(coords.dimensionID).getDimensionName()));
+            list.add(String.format(
+                    StatCollector.translateToLocal("tooltip.dimension"),
+                    DimensionManager.getProvider(coords.dimensionID).getDimensionName()));
             list.add(String.format(StatCollector.translateToLocal("tooltip.coords"), coords.x, coords.y, coords.z));
 
-            if (bound != null)
-                list.add(" --- ");
+            if (bound != null) list.add(" --- ");
         }
 
         if (bound != null) {
@@ -180,7 +179,17 @@ extends Item {
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUseFirst(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(x, y, z);
 
@@ -207,7 +216,8 @@ extends Item {
                 float[] hit = getHitCoordinates(stack);
 
                 if (coord.inWorld(world)) {
-                    RemoteIO.proxy.activateBlock(coord.getWorld(), coord.x, coord.y, coord.z, player, side, hit[0], hit[1], hit[2]);
+                    RemoteIO.proxy.activateBlock(
+                            coord.getWorld(), coord.x, coord.y, coord.z, player, side, hit[0], hit[1], hit[2]);
                 }
             }
         }

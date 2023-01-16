@@ -2,10 +2,10 @@ package remoteio.common.core.handler;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import remoteio.common.lib.ModItems;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import remoteio.common.lib.ModItems;
 
 /**
  * @author dmillerw
@@ -36,9 +36,14 @@ public class PlayerEventHandler {
             if (held != null && held.hasTagCompound() && held.getTagCompound().hasKey("inhibit")) {
                 byte inhibitor = held.getTagCompound().getByte("inhibit");
                 switch (inhibitor) {
-                    case 0: preventBlock = true; break;
-                    case 1: preventItem = true; break;
-                    default: break;
+                    case 0:
+                        preventBlock = true;
+                        break;
+                    case 1:
+                        preventItem = true;
+                        break;
+                    default:
+                        break;
                 }
             }
 

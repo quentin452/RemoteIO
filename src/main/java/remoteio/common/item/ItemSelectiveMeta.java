@@ -1,18 +1,16 @@
 package remoteio.common.item;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * @author dmillerw
  */
-public class ItemSelectiveMeta
-extends Item {
+public class ItemSelectiveMeta extends Item {
     protected final int[] values;
     protected Map<Integer, String> names;
 
@@ -20,7 +18,8 @@ extends Item {
         super();
 
         if (values.length != names.length) {
-            throw new IllegalArgumentException("Values array isn't the same size as the unlocalized name array! Modder error! Report this!");
+            throw new IllegalArgumentException(
+                    "Values array isn't the same size as the unlocalized name array! Modder error! Report this!");
         }
 
         this.values = values;

@@ -1,25 +1,26 @@
 package remoteio.client.render;
 
-import remoteio.common.tile.TileTransceiver;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
+import remoteio.common.tile.TileTransceiver;
 
 /**
  * @author dmillerw
  */
 public class RenderTileTransceiver extends TileEntitySpecialRenderer {
-    public static final IModelCustom MODEL = AdvancedModelLoader.loadModel(new ResourceLocation("remoteio:models/transceiver.obj"));
+    public static final IModelCustom MODEL =
+            AdvancedModelLoader.loadModel(new ResourceLocation("remoteio:models/transceiver.obj"));
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float partial) {
         GL11.glPushMatrix();
         GL11.glTranslated(x + 0.5, y, z + 0.5);
 
-        switch (((TileTransceiver)tileEntity).orientation) {
+        switch (((TileTransceiver) tileEntity).orientation) {
             case UP: {
                 GL11.glRotated(180, 1, 0, 0);
                 GL11.glTranslated(0, -1, 0);

@@ -6,6 +6,12 @@ import com.google.gson.Gson;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
@@ -14,13 +20,6 @@ import net.minecraft.util.StringTranslate;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author dmillerw
@@ -44,7 +43,9 @@ public class LocalizationUpdater {
     private boolean optout = false;
 
     public LocalizationUpdater(String owner, String repo, String branch, String langPath) {
-        this(String.format(LANG_DIR, owner, repo, langPath, branch), String.format(RAW_URL, owner, repo, branch) + "/%s");
+        this(
+                String.format(LANG_DIR, owner, repo, langPath, branch),
+                String.format(RAW_URL, owner, repo, branch) + "/%s");
     }
 
     public LocalizationUpdater(String langUrl, String rawUrl) {
@@ -54,7 +55,13 @@ public class LocalizationUpdater {
 
     // Called in preInit to start the download thread
     public void initializeThread(Configuration configuration) {
-        optout = configuration.get("optout", "localization_update", false, "Opt-out of localization updates, and only use lang files packaged with the JAR").getBoolean(false);
+        optout = configuration
+                .get(
+                        "optout",
+                        "localization_update",
+                        false,
+                        "Opt-out of localization updates, and only use lang files packaged with the JAR")
+                .getBoolean(false);
         if (!optout) {
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -74,16 +81,15 @@ public class LocalizationUpdater {
                                 URL url1 = new URL(String.format(rawUrl, aJson.get("path")));
                                 InputStream con1 = url1.openStream();
                                 Map<String, String> map = StringTranslate.parseLangFile(con1);
-                                LocalizationUpdater.this.loadedLangFiles.put(name.substring(0, name.lastIndexOf(".lang")), map);
+                                LocalizationUpdater.this.loadedLangFiles.put(
+                                        name.substring(0, name.lastIndexOf(".lang")), map);
                                 con1.close();
                             }
                         }
                     } catch (Exception ex) {
                         // Most likely due to the lack of an internet connection. No need to print
-                        if (ex instanceof UnknownHostException)
-                            optout = true;
-                        else
-                            LOGGER.warn("Failed to update localization!", ex);
+                        if (ex instanceof UnknownHostException) optout = true;
+                        else LOGGER.warn("Failed to update localization!", ex);
                     }
                 }
             });
@@ -93,18 +99,22 @@ public class LocalizationUpdater {
 
     @SideOnly(Side.CLIENT)
     public void registerListener() {
-        ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(new IResourceManagerReloadListener() {
-            @Override
-            public void onResourceManagerReload(IResourceManager resourceManager) {
-                LocalizationUpdater.this.loadLangFiles();
-            }
-        });
+        ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager())
+                .registerReloadListener(new IResourceManagerReloadListener() {
+                    @Override
+                    public void onResourceManagerReload(IResourceManager resourceManager) {
+                        LocalizationUpdater.this.loadLangFiles();
+                    }
+                });
     }
 
     // Called whenever the resource manager reloads, to load any lang files that the thread gathered
     private void loadLangFiles() {
         if (!optout) {
-            HashMap<String, String> map = (HashMap<String, String>) loadedLangFiles.get(Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode());
+            HashMap<String, String> map = (HashMap<String, String>) loadedLangFiles.get(Minecraft.getMinecraft()
+                    .getLanguageManager()
+                    .getCurrentLanguage()
+                    .getLanguageCode());
             if (map != null) {
                 StringTranslateDelegate.inject(map);
             }
@@ -126,17 +136,21 @@ public class LocalizationUpdater {
                             break;
                         }
                     }
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
             }
             return instance;
         }
 
         public static void inject(HashMap<String, String> map) {
             try {
-                Map<String, String> languageMap = ObfuscationReflectionHelper.getPrivateValue(StringTranslate.class, getInstance(), LANGUAGE_MAP);
+                Map<String, String> languageMap =
+                        ObfuscationReflectionHelper.getPrivateValue(StringTranslate.class, getInstance(), LANGUAGE_MAP);
                 languageMap.putAll(map);
-                ObfuscationReflectionHelper.setPrivateValue(StringTranslate.class, getInstance(), System.currentTimeMillis(), LAST_UPDATE);
-            } catch (Exception ignored) {}
+                ObfuscationReflectionHelper.setPrivateValue(
+                        StringTranslate.class, getInstance(), System.currentTimeMillis(), LAST_UPDATE);
+            } catch (Exception ignored) {
+            }
         }
     }
 }

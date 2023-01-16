@@ -4,15 +4,14 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import remoteio.common.block.BlockSkylight;
-import remoteio.common.lib.ModBlocks;
+import java.util.List;
+import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.List;
-import java.util.Set;
+import remoteio.common.block.BlockSkylight;
+import remoteio.common.lib.ModBlocks;
 
 /**
  * @author dmillerw
@@ -50,7 +49,14 @@ public class BlockUpdateTicker {
             for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
                 Block block = world.getBlock(x + side.offsetX, y + side.offsetY, z + side.offsetZ);
                 if (block != null && block == ModBlocks.skylight) {
-                    ((BlockSkylight)block).onBlockUpdate(world, x + side.offsetX, y + side.offsetY, z + side.offsetZ, ModBlocks.skylight, meta);
+                    ((BlockSkylight) block)
+                            .onBlockUpdate(
+                                    world,
+                                    x + side.offsetX,
+                                    y + side.offsetY,
+                                    z + side.offsetZ,
+                                    ModBlocks.skylight,
+                                    meta);
                 }
             }
         }
@@ -69,6 +75,7 @@ public class BlockUpdateTicker {
 
             return true;
         }
+
         @Override
         public int hashCode() {
             int result = x;
@@ -98,7 +105,7 @@ public class BlockUpdateTicker {
                 updateCount++;
             }
         }
-        for (int i=0; i<removalList.size(); i++) {
+        for (int i = 0; i < removalList.size(); i++) {
             blockUpdateSet.remove(removalList.get(i));
         }
     }

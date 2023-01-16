@@ -1,14 +1,14 @@
 package remoteio.client.render;
 
-import remoteio.common.block.core.BlockIOCore;
-import remoteio.client.helper.IORenderHelper;
-import remoteio.common.tile.TileRemoteInventory;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import org.lwjgl.opengl.GL11;
+import remoteio.client.helper.IORenderHelper;
+import remoteio.common.block.core.BlockIOCore;
+import remoteio.common.tile.TileRemoteInventory;
 
 /**
  * @author dmillerw

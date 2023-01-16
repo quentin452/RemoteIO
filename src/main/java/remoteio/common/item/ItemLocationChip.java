@@ -1,5 +1,6 @@
 package remoteio.common.item;
 
+import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,13 +16,10 @@ import remoteio.common.lib.ModInfo;
 import remoteio.common.tile.TileRemoteInterface;
 import remoteio.common.tile.TileRemoteInventory;
 
-import java.util.List;
-
 /**
  * @author dmillerw
  */
-public final class ItemLocationChip
-extends Item {
+public final class ItemLocationChip extends Item {
     public ItemLocationChip() {
         setMaxStackSize(1);
         setCreativeTab(TabRemoteIO.TAB);
@@ -31,17 +29,29 @@ extends Item {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
         DimensionalCoords coords = ItemLocationChip.getCoordinates(stack);
         if (coords != null) {
-            list.add("Dimension: " + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
+            list.add("Dimension: "
+                    + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
             list.add("X: " + coords.x + " Y: " + coords.y + " Z: " + coords.z);
         }
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUseFirst(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(x, y, z);
 
-            if (player.isSneaking() && !((tile instanceof TileRemoteInterface) || (tile instanceof TileRemoteInventory))) {
+            if (player.isSneaking()
+                    && !((tile instanceof TileRemoteInterface) || (tile instanceof TileRemoteInventory))) {
                 ItemLocationChip.setCoordinates(stack, new DimensionalCoords(world.provider.dimensionId, x, y, z));
                 player.addChatComponentMessage(new ChatComponentTranslation("chat.target.save"));
                 return true;
@@ -51,8 +61,8 @@ extends Item {
                         DimensionalCoords coords = ItemLocationChip.getCoordinates(stack);
 
                         if (coords != null) {
-                                ((TileRemoteInterface) tile).setRemotePosition(coords);
-                                player.addChatComponentMessage(new ChatComponentTranslation("chat.target.load"));
+                            ((TileRemoteInterface) tile).setRemotePosition(coords);
+                            player.addChatComponentMessage(new ChatComponentTranslation("chat.target.load"));
                         }
                         return true;
                     }

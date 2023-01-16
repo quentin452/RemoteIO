@@ -1,14 +1,14 @@
 package remoteio.common.inventory.container.core;
 
-import remoteio.common.inventory.container.slot.SlotLimited;
-import remoteio.common.item.ItemTransferChip;
-import remoteio.common.item.ItemUpgradeChip;
-import remoteio.common.tile.core.TileIOCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import remoteio.common.inventory.container.slot.SlotLimited;
+import remoteio.common.item.ItemTransferChip;
+import remoteio.common.item.ItemUpgradeChip;
+import remoteio.common.tile.core.TileIOCore;
 
 /**
  * @author dmillerw
@@ -23,18 +23,21 @@ public class ContainerIO extends Container {
         // Transfer Chip slots
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 3; ++j) {
-                this.addSlotToContainer(new SlotLimited(tile.transferChips, i + j * 2, 17 + j * 18, 13 + i * 18, ItemTransferChip.class));
+                this.addSlotToContainer(new SlotLimited(
+                        tile.transferChips, i + j * 2, 17 + j * 18, 13 + i * 18, ItemTransferChip.class));
             }
         }
         for (int i = 0; i < 2; ++i) {
-            this.addSlotToContainer(new SlotLimited(tile.transferChips, i + 6, 17 + i * 18, 49, ItemTransferChip.class));
+            this.addSlotToContainer(
+                    new SlotLimited(tile.transferChips, i + 6, 17 + i * 18, 49, ItemTransferChip.class));
         }
         this.addSlotToContainer(new SlotLimited(tile.transferChips, 8, 17, 67, ItemTransferChip.class));
 
         // Upgrade Chip slots
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 3; ++j) {
-                this.addSlotToContainer(new SlotLimited(tile.upgradeChips, i + j * 2, 128 + j * 18, 13 + i * 18, ItemUpgradeChip.class));
+                this.addSlotToContainer(new SlotLimited(
+                        tile.upgradeChips, i + j * 2, 128 + j * 18, 13 + i * 18, ItemUpgradeChip.class));
             }
         }
         for (int i = 0; i < 2; ++i) {
@@ -107,7 +110,11 @@ public class ContainerIO extends Container {
                 slot = (Slot) this.inventorySlots.get(i);
                 ItemStack slotStack = slot.getStack();
 
-                if (slot.isItemValid(itemStack) && slotStack != null && slotStack.getItem() == itemStack.getItem() && (!itemStack.getHasSubtypes() || itemStack.getItemDamage() == slotStack.getItemDamage()) && ItemStack.areItemStackTagsEqual(itemStack, slotStack)) {
+                if (slot.isItemValid(itemStack)
+                        && slotStack != null
+                        && slotStack.getItem() == itemStack.getItem()
+                        && (!itemStack.getHasSubtypes() || itemStack.getItemDamage() == slotStack.getItemDamage())
+                        && ItemStack.areItemStackTagsEqual(itemStack, slotStack)) {
                     int total = slotStack.stackSize + itemStack.stackSize;
                     int max = Math.min(itemStack.getMaxStackSize(), slot.getSlotStackLimit());
 

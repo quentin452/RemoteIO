@@ -103,8 +103,7 @@ public class InventoryTileCrafting extends InventoryCrafting {
     }
 
     @Override
-    public void markDirty() {
-    }
+    public void markDirty() {}
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer p_70300_1_) {
@@ -112,12 +111,10 @@ public class InventoryTileCrafting extends InventoryCrafting {
     }
 
     @Override
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     @Override
     public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {

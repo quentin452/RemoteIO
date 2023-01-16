@@ -2,6 +2,14 @@ package remoteio.common.tile;
 
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.Optional;
+import ic2.api.energy.tile.IEnergySink;
+import ic2.api.energy.tile.IEnergySource;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 import remoteio.common.core.TransferType;
 import remoteio.common.core.UpgradeType;
 import remoteio.common.core.helper.PlayerHelper;
@@ -13,31 +21,23 @@ import remoteio.common.item.ItemWirelessTransmitter;
 import remoteio.common.lib.DependencyInfo;
 import remoteio.common.lib.VisualState;
 import remoteio.common.tile.core.TileIOCore;
-import ic2.api.energy.tile.IEnergySink;
-import ic2.api.energy.tile.IEnergySource;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * @author dmillerw
  */
 @Optional.InterfaceList({
-        @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYSOURCE, modid = DependencyInfo.ModIds.IC2),
-        @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYEMITTER, modid = DependencyInfo.ModIds.IC2),
-        @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYSINK, modid = DependencyInfo.ModIds.IC2),
-        @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYACCEPTOR, modid = DependencyInfo.ModIds.IC2),
-        @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYTILE, modid = DependencyInfo.ModIds.IC2),
-        @Optional.Interface(iface = DependencyInfo.Paths.COFH.IENERGYHANDLER, modid = DependencyInfo.ModIds.COFH_API)
+    @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYSOURCE, modid = DependencyInfo.ModIds.IC2),
+    @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYEMITTER, modid = DependencyInfo.ModIds.IC2),
+    @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYSINK, modid = DependencyInfo.ModIds.IC2),
+    @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYACCEPTOR, modid = DependencyInfo.ModIds.IC2),
+    @Optional.Interface(iface = DependencyInfo.Paths.IC2.IENERGYTILE, modid = DependencyInfo.ModIds.IC2),
+    @Optional.Interface(iface = DependencyInfo.Paths.COFH.IENERGYHANDLER, modid = DependencyInfo.ModIds.COFH_API)
 })
-public class TileRemoteInventory extends TileIOCore implements
-        IInventory,
-        IEnergySource, // IC2
-        IEnergySink, // IC2
-        IEnergyHandler // COFH
+public class TileRemoteInventory extends TileIOCore
+        implements IInventory,
+                IEnergySource, // IC2
+                IEnergySink, // IC2
+                IEnergyHandler // COFH
 {
 
     @Override
@@ -111,7 +111,7 @@ public class TileRemoteInventory extends TileIOCore implements
         IC2Helper.unloadEnergyTile(this);
     }
 
-	/* CHIP METHODS */
+    /* CHIP METHODS */
 
     public EntityPlayer getPlayer() {
         if (target == null || target.isEmpty()) {
@@ -137,7 +137,7 @@ public class TileRemoteInventory extends TileIOCore implements
         return null;
     }
 
-	/* END CHIP METHODS */
+    /* END CHIP METHODS */
 
     public void setPlayer(String target) {
         if (registeredWithIC2) {
@@ -228,14 +228,10 @@ public class TileRemoteInventory extends TileIOCore implements
     }
 
     @Override
-    public void openInventory() {
-
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-
-    }
+    public void closeInventory() {}
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {

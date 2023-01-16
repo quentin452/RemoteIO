@@ -13,11 +13,9 @@ import remoteio.common.lib.DependencyInfo;
  */
 public class ToolHelper {
     public static boolean isTool(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z) {
-        if (itemStack == null || itemStack.getItem() == null)
-            return false;
+        if (itemStack == null || itemStack.getItem() == null) return false;
 
-        if (itemStack.getItem() instanceof IIOTool)
-            return true;
+        if (itemStack.getItem() instanceof IIOTool) return true;
 
         if (Loader.isModLoaded(DependencyInfo.ModIds.AE2)) {
             if (itemStack.getItem() instanceof IAEWrench)

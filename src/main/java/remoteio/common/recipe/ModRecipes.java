@@ -4,7 +4,11 @@ import appeng.api.AEApi;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
+import ic2.api.item.IC2Items;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import remoteio.common.core.TransferType;
 import remoteio.common.core.UpgradeType;
 import remoteio.common.core.helper.ModHelper;
@@ -12,11 +16,6 @@ import remoteio.common.core.helper.RecipeHelper;
 import remoteio.common.lib.DependencyInfo;
 import remoteio.common.lib.ModBlocks;
 import remoteio.common.lib.ModItems;
-import ic2.api.item.IC2Items;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * @author dmillerw
@@ -30,10 +29,12 @@ public class ModRecipes {
                 "SGS",
                 "GWG",
                 "SGS",
-                'S', Blocks.stone,
-                'G', Blocks.glass,
-                'W', Items.water_bucket
-        );
+                'S',
+                Blocks.stone,
+                'G',
+                Blocks.glass,
+                'W',
+                Items.water_bucket);
 
         // LAVA HEATER
         RecipeHelper.addOreRecipe(
@@ -41,10 +42,12 @@ public class ModRecipes {
                 "SIS",
                 "ILI",
                 "SIS",
-                'S', Blocks.stone,
-                'I', Blocks.iron_bars,
-                'L', Items.lava_bucket
-        );
+                'S',
+                Blocks.stone,
+                'I',
+                Blocks.iron_bars,
+                'L',
+                Items.lava_bucket);
 
         // REMOTE INTERFACE
         RecipeHelper.addOreRecipe(
@@ -52,10 +55,12 @@ public class ModRecipes {
                 " E ",
                 "RGR",
                 "RRR",
-                'E', Items.ender_pearl,
-                'R', Items.redstone,
-                'G', Blocks.gold_block
-        );
+                'E',
+                Items.ender_pearl,
+                'R',
+                Items.redstone,
+                'G',
+                Blocks.gold_block);
 
         // LINKER
         RecipeHelper.addOreRecipe(
@@ -63,11 +68,14 @@ public class ModRecipes {
                 " G ",
                 "GEI",
                 " IR",
-                'G', Items.gold_ingot,
-                'E', Items.ender_pearl,
-                'I', Items.iron_ingot,
-                'R', Items.redstone
-        );
+                'G',
+                Items.gold_ingot,
+                'E',
+                Items.ender_pearl,
+                'I',
+                Items.iron_ingot,
+                'R',
+                Items.redstone);
 
         // REMOTE ACCESSOR
         RecipeHelper.addOreRecipe(
@@ -75,11 +83,14 @@ public class ModRecipes {
                 " I ",
                 "LCL",
                 " T ",
-                'I', ModBlocks.remoteInterface,
-                'L', ModItems.linker,
-                'C', ModItems.locationChip,
-                'T', ModItems.wirelessTransmitter
-        );
+                'I',
+                ModBlocks.remoteInterface,
+                'L',
+                ModItems.linker,
+                'C',
+                ModItems.locationChip,
+                'T',
+                ModItems.wirelessTransmitter);
 
         // SKY LIGHT
         GameRegistry.addShapedRecipe(
@@ -87,17 +98,16 @@ public class ModRecipes {
                 "SGS",
                 "GRG",
                 "STS",
-                'S', Blocks.stone,
-                'G', Blocks.glass,
-                'R', Items.redstone
-        );
+                'S',
+                Blocks.stone,
+                'G',
+                Blocks.glass,
+                'R',
+                Items.redstone);
 
         // INTELLIGENT WORKBENCH
         GameRegistry.addShapelessRecipe(
-                new ItemStack(ModBlocks.intelligentWorkbench),
-                Blocks.crafting_table,
-                ModItems.locationChip
-        );
+                new ItemStack(ModBlocks.intelligentWorkbench), Blocks.crafting_table, ModItems.locationChip);
 
         // IO TOOL
         RecipeHelper.addOreRecipe(
@@ -105,12 +115,14 @@ public class ModRecipes {
                 " I ",
                 "RSI",
                 "IR ",
-                'I', Items.iron_ingot,
-                'R', Items.redstone,
-                'S', Items.stick
-        );
+                'I',
+                Items.iron_ingot,
+                'R',
+                Items.redstone,
+                'S',
+                Items.stick);
 
-/*        // Testing Recipe
+        /*        // Testing Recipe
         RecipeHelper.addOreRecipe(
                 new ItemStack(Items.diamond_sword),
                 " C ",
@@ -126,11 +138,14 @@ public class ModRecipes {
                 "IGI",
                 "IRI",
                 "IBI",
-                'I', Items.iron_ingot,
-                'R', Items.redstone,
-                'G', Blocks.glass,
-                'B', Blocks.stone_button
-        );
+                'I',
+                Items.iron_ingot,
+                'R',
+                Items.redstone,
+                'G',
+                Blocks.glass,
+                'B',
+                Blocks.stone_button);
 
         // LOCATION CHIP
         RecipeHelper.addOreRecipe(
@@ -138,17 +153,15 @@ public class ModRecipes {
                 "R",
                 "P",
                 "G",
-                'R', Items.redstone,
-                'P', Items.paper,
-                'G', Items.gold_nugget
-        );
+                'R',
+                Items.redstone,
+                'P',
+                Items.paper,
+                'G',
+                Items.gold_nugget);
 
         // BLANK PLATE
-        RecipeHelper.addOreRecipe(
-                new ItemStack(ModItems.blankPlate),
-                "III",
-                'I', Items.iron_ingot
-        );
+        RecipeHelper.addOreRecipe(new ItemStack(ModItems.blankPlate), "III", 'I', Items.iron_ingot);
 
         // WIRELESS TRANSMITTER
         RecipeHelper.addOreRecipe(
@@ -156,31 +169,38 @@ public class ModRecipes {
                 " E ",
                 "S  ",
                 "IRI",
-                'E', Items.ender_pearl,
-                'S', Items.stick,
-                'I', Items.iron_ingot,
-                'R', Items.redstone
-        );
+                'E',
+                Items.ender_pearl,
+                'S',
+                Items.stick,
+                'I',
+                Items.iron_ingot,
+                'R',
+                Items.redstone);
 
         // TRANSFER TYPE - ITEM
         RecipeHelper.addOreRecipe(
                 new ItemStack(ModItems.transferChip, 1, TransferType.MATTER_ITEM),
                 " B ",
                 "ICI",
-                'B', ModItems.blankPlate,
-                'I', Blocks.chest,
-                'C', ModItems.locationChip
-        );
+                'B',
+                ModItems.blankPlate,
+                'I',
+                Blocks.chest,
+                'C',
+                ModItems.locationChip);
 
         // TRANSFER TYPE - FLUID
         RecipeHelper.addOreRecipe(
                 new ItemStack(ModItems.transferChip, 1, TransferType.MATTER_FLUID),
                 " B ",
                 "ICI",
-                'B', ModItems.blankPlate,
-                'I', Items.bucket,
-                'C', ModItems.locationChip
-        );
+                'B',
+                ModItems.blankPlate,
+                'I',
+                Items.bucket,
+                'C',
+                ModItems.locationChip);
 
         // TRANSFER TYPE - ESSENTIA
         RecipeHelper.addDependentOreRecipe(
@@ -188,10 +208,12 @@ public class ModRecipes {
                 new ItemStack(ModItems.transferChip, 1, TransferType.MATTER_ESSENTIA),
                 " B ",
                 "ICI",
-                'B', ModItems.blankPlate,
-                'I', ModHelper.getThaumcraftItem("itemEssence", OreDictionary.WILDCARD_VALUE),
-                'C', ModItems.locationChip
-        );
+                'B',
+                ModItems.blankPlate,
+                'I',
+                ModHelper.getThaumcraftItem("itemEssence", OreDictionary.WILDCARD_VALUE),
+                'C',
+                ModItems.locationChip);
 
         // TRANSFER TYPE - IC2
         for (ItemStack cable : getIC2Cables()) {
@@ -200,10 +222,12 @@ public class ModRecipes {
                     new ItemStack(ModItems.transferChip, 1, TransferType.ENERGY_IC2),
                     " B ",
                     "ICI",
-                    'B', ModItems.blankPlate,
-                    'I', cable,
-                    'C', ModItems.locationChip
-            );
+                    'B',
+                    ModItems.blankPlate,
+                    'I',
+                    cable,
+                    'C',
+                    ModItems.locationChip);
         }
 
         // TRANSFER TYPE - RF
@@ -212,10 +236,12 @@ public class ModRecipes {
                 new ItemStack(ModItems.transferChip, 1, TransferType.ENERGY_RF),
                 " B ",
                 "ICI",
-                'B', ModItems.blankPlate,
-                'I', Items.redstone,
-                'C', ModItems.locationChip
-        );
+                'B',
+                ModItems.blankPlate,
+                'I',
+                Items.redstone,
+                'C',
+                ModItems.locationChip);
 
         // TRANSFER TYPE - AE2 NETWORK
         if (Loader.isModLoaded(DependencyInfo.ModIds.AE2)) {
@@ -231,10 +257,12 @@ public class ModRecipes {
                         " B ",
                         " C ",
                         " I ",
-                        'B', ModItems.blankPlate,
-                        'I', component,
-                        'C', ModItems.locationChip
-                );
+                        'B',
+                        ModItems.blankPlate,
+                        'I',
+                        component,
+                        'C',
+                        ModItems.locationChip);
             }
         }
 
@@ -244,20 +272,24 @@ public class ModRecipes {
                 " B ",
                 " C ",
                 " I ",
-                'B', ModItems.blankPlate,
-                'I', Blocks.redstone_block,
-                'C', ModItems.locationChip
-        );
+                'B',
+                ModItems.blankPlate,
+                'I',
+                Blocks.redstone_block,
+                'C',
+                ModItems.locationChip);
 
         // UPGRADE TYPE - REMOTE CAMOUFLAGE
         RecipeHelper.addOreRecipe(
                 new ItemStack(ModItems.upgradeChip, 1, UpgradeType.REMOTE_CAMO),
                 " B ",
                 "ICI",
-                'B', ModItems.blankPlate,
-                'I', Items.ender_pearl,
-                'C', ModItems.locationChip
-        );
+                'B',
+                ModItems.blankPlate,
+                'I',
+                Items.ender_pearl,
+                'C',
+                ModItems.locationChip);
 
         // UPGRADE TYPE - REMOTE ACCESS
         RecipeHelper.addOreRecipe(
@@ -265,15 +297,27 @@ public class ModRecipes {
                 "B",
                 "C",
                 "R",
-                'B', ModItems.blankPlate,
-                'C', ModItems.locationChip,
-                'R', ModItems.wirelessTransmitter
-        );
+                'B',
+                ModItems.blankPlate,
+                'C',
+                ModItems.locationChip,
+                'R',
+                ModItems.wirelessTransmitter);
     }
 
     private static ItemStack[] getIC2Cables() {
         if (Loader.isModLoaded("IC2")) {
-            String[] cableTypes = new String[]{"copper", "insulatedCopper", "gold", "insulatedGold", "iron", "insulatedIron", "insulatedTin", "glassFiber", "tin"};
+            String[] cableTypes = new String[] {
+                "copper",
+                "insulatedCopper",
+                "gold",
+                "insulatedGold",
+                "iron",
+                "insulatedIron",
+                "insulatedTin",
+                "glassFiber",
+                "tin"
+            };
             ItemStack[] cables = new ItemStack[cableTypes.length];
 
             try {
