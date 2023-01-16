@@ -1,11 +1,11 @@
 package remoteio.core.transform;
 
-import remoteio.core.MappingHelper;
-import remoteio.core.mapping.MappingConstants;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import remoteio.core.MappingHelper;
+import remoteio.core.mapping.MappingConstants;
 
 /**
  * @author dmillerw
@@ -33,7 +33,10 @@ public class TransformWorld implements ITransformer {
         final String world = MappingConstants.Type.get(MappingConstants.Type.WORLD);
 
         for (MethodNode methodNode : classNode.methods) {
-            if (MappingConstants.Method.equals(methodNode, MappingConstants.Method.GET_INDIRECT_POWER_LEVEL_TO, MappingConstants.Method.Desc.GET_INDIRECT_POWER_LEVEL_TO)) {
+            if (MappingConstants.Method.equals(
+                    methodNode,
+                    MappingConstants.Method.GET_INDIRECT_POWER_LEVEL_TO,
+                    MappingConstants.Method.Desc.GET_INDIRECT_POWER_LEVEL_TO)) {
                 targetNode = methodNode;
                 MappingHelper.logger.info("Found method 'getIndirectPowerLevelTo'");
                 break;
@@ -47,7 +50,12 @@ public class TransformWorld implements ITransformer {
             targetNode.instructions.add(new VarInsnNode(Opcodes.ILOAD, 2));
             targetNode.instructions.add(new VarInsnNode(Opcodes.ILOAD, 3));
             targetNode.instructions.add(new VarInsnNode(Opcodes.ILOAD, 4));
-            targetNode.instructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, METHOD_HANDLER, METHOD_REDSTONE, String.format(METHOD_REDSTONE_DESC, world), false));
+            targetNode.instructions.add(new MethodInsnNode(
+                    Opcodes.INVOKESTATIC,
+                    METHOD_HANDLER,
+                    METHOD_REDSTONE,
+                    String.format(METHOD_REDSTONE_DESC, world),
+                    false));
             targetNode.instructions.add(new InsnNode(Opcodes.IRETURN));
 
             MappingHelper.logger.warn("Successfully transformed World.class!");

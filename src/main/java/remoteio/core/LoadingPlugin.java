@@ -1,12 +1,12 @@
 package remoteio.core;
 
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
-
 import java.util.Map;
 
 /**
  * @author dmillerw
  */
+@IFMLLoadingPlugin.MCVersion("1.7.10")
 public class LoadingPlugin implements IFMLLoadingPlugin {
 
     @Override
@@ -26,7 +26,7 @@ public class LoadingPlugin implements IFMLLoadingPlugin {
 
     @Override
     public void injectData(Map<String, Object> data) {
-        MappingHelper.obfuscated = ((Boolean)data.get("runtimeDeobfuscationEnabled"));
+        MappingHelper.obfuscated = ((Boolean) data.get("runtimeDeobfuscationEnabled"));
     }
 
     @Override

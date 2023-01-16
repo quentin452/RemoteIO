@@ -14,18 +14,17 @@ public enum VisualState {
     }
 
     @Override
-    public String toString(){
-        switch(this)
-        {
+    public String toString() {
+        switch (this) {
             case INACTIVE_BLINK:
-            case INACTIVE:{
+            case INACTIVE: {
                 return "Inactive";
             }
             case ACTIVE:
-            case ACTIVE_BLINK:{
+            case ACTIVE_BLINK: {
                 return "Active";
             }
-            default:{
+            default: {
                 return null;
             }
         }

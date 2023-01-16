@@ -1,19 +1,20 @@
 package remoteio.client.gui;
 
-import remoteio.common.inventory.InventoryItem;
-import remoteio.common.inventory.container.ContainerSimpleCamo;
-import remoteio.common.lib.ModInfo;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import remoteio.common.inventory.InventoryItem;
+import remoteio.common.inventory.container.ContainerSimpleCamo;
+import remoteio.common.lib.ModInfo;
 
 /**
  * @author dmillerw
  */
 public class GuiSimpleCamo extends GuiContainer {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(ModInfo.RESOURCE_PREFIX + "textures/gui/simple_camo.png");
+    private static final ResourceLocation TEXTURE =
+            new ResourceLocation(ModInfo.RESOURCE_PREFIX + "textures/gui/simple_camo.png");
 
     public GuiSimpleCamo(EntityPlayer player, InventoryItem inventory) {
         super(new ContainerSimpleCamo(player, inventory));

@@ -11,7 +11,7 @@ public class MappingHelper {
 
     public static boolean obfuscated;
 
-    public static boolean stringMatches(String string, String ... compare) {
+    public static boolean stringMatches(String string, String... compare) {
         for (String s : compare) {
             if (s.equals(string)) {
                 return true;
@@ -19,5 +19,4 @@ public class MappingHelper {
         }
         return false;
     }
-
 }

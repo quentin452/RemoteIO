@@ -1,10 +1,7 @@
 package remoteio.common.inventory.container;
 
 import com.google.common.collect.Lists;
-import remoteio.common.inventory.InventoryTileCrafting;
-import remoteio.common.network.PacketHandler;
-import remoteio.common.network.packet.PacketClientForceSlot;
-import remoteio.common.tile.TileIntelligentWorkbench;
+import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,8 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
-
-import java.util.List;
+import remoteio.common.inventory.InventoryTileCrafting;
+import remoteio.common.network.PacketHandler;
+import remoteio.common.network.packet.PacketClientForceSlot;
+import remoteio.common.tile.TileIntelligentWorkbench;
 
 /**
  * @author dmillerw
@@ -46,7 +45,11 @@ public class ContainerIntelligentWorkbench extends Container {
             }
         }
 
-        if (i == 2 && itemstack.getItem() == itemstack1.getItem() && itemstack.stackSize == 1 && itemstack1.stackSize == 1 && itemstack.getItem().isRepairable()) {
+        if (i == 2
+                && itemstack.getItem() == itemstack1.getItem()
+                && itemstack.stackSize == 1
+                && itemstack1.stackSize == 1
+                && itemstack.getItem().isRepairable()) {
             Item item = itemstack.getItem();
             int j1 = item.getMaxDamage() - itemstack.getItemDamageForDisplay();
             int k = item.getMaxDamage() - itemstack1.getItemDamageForDisplay();
@@ -60,7 +63,8 @@ public class ContainerIntelligentWorkbench extends Container {
             list.add(new ItemStack(itemstack.getItem(), 1, i1));
         } else {
             for (j = 0; j < CraftingManager.getInstance().getRecipeList().size(); ++j) {
-                IRecipe irecipe = (IRecipe) CraftingManager.getInstance().getRecipeList().get(j);
+                IRecipe irecipe =
+                        (IRecipe) CraftingManager.getInstance().getRecipeList().get(j);
 
                 if (irecipe.matches(craftMatrix, world)) {
                     list.add(irecipe.getCraftingResult(craftMatrix));
@@ -83,13 +87,15 @@ public class ContainerIntelligentWorkbench extends Container {
     public ContainerIntelligentWorkbench(InventoryPlayer inventoryPlayer, World world, int x, int y, int z) {
         this.tileIntelligentWorkbench = (TileIntelligentWorkbench) world.getTileEntity(x, y, z);
         this.tileIntelligentWorkbench.craftMatrix.setContainer(this);
-        this.addSlotToContainer(new SlotCrafting(inventoryPlayer.player, tileIntelligentWorkbench.craftMatrix, this.craftResult, 0, 124, 35));
+        this.addSlotToContainer(new SlotCrafting(
+                inventoryPlayer.player, tileIntelligentWorkbench.craftMatrix, this.craftResult, 0, 124, 35));
         int l;
         int i1;
 
         for (l = 0; l < 3; ++l) {
             for (i1 = 0; i1 < 3; ++i1) {
-                this.addSlotToContainer(new Slot(tileIntelligentWorkbench.craftMatrix, i1 + l * 3, 30 + i1 * 18, 17 + l * 18));
+                this.addSlotToContainer(
+                        new Slot(tileIntelligentWorkbench.craftMatrix, i1 + l * 3, 30 + i1 * 18, 17 + l * 18));
             }
         }
 
@@ -108,7 +114,8 @@ public class ContainerIntelligentWorkbench extends Container {
 
     @Override
     public void onCraftMatrixChanged(IInventory inventory) {
-        results = ContainerIntelligentWorkbench.getAllCraftingResults(tileIntelligentWorkbench.craftMatrix, tileIntelligentWorkbench.getWorldObj());
+        results = ContainerIntelligentWorkbench.getAllCraftingResults(
+                tileIntelligentWorkbench.craftMatrix, tileIntelligentWorkbench.getWorldObj());
         recipeIndex = 0;
         this.craftResult.setInventorySlotContents(0, !results.isEmpty() ? results.get(recipeIndex) : null);
         detectAndSendChanges();
@@ -149,14 +156,19 @@ public class ContainerIntelligentWorkbench extends Container {
         }
 
         this.craftResult.setInventorySlotContents(0, !results.isEmpty() ? results.get(recipeIndex) : null);
-        PacketHandler.INSTANCE.sendTo(new PacketClientForceSlot(0, this.craftResult.getStackInSlot(0)), (EntityPlayerMP) player);
+        PacketHandler.INSTANCE.sendTo(
+                new PacketClientForceSlot(0, this.craftResult.getStackInSlot(0)), (EntityPlayerMP) player);
 
         return true;
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        return player.getDistanceSq((double) tileIntelligentWorkbench.xCoord + 0.5D, (double) tileIntelligentWorkbench.yCoord + 0.5D, (double) tileIntelligentWorkbench.zCoord + 0.5D) <= 64.0D;
+        return player.getDistanceSq(
+                        (double) tileIntelligentWorkbench.xCoord + 0.5D,
+                        (double) tileIntelligentWorkbench.yCoord + 0.5D,
+                        (double) tileIntelligentWorkbench.zCoord + 0.5D)
+                <= 64.0D;
     }
 
     @Override

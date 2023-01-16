@@ -43,7 +43,8 @@ public class TessellatorCapture {
         return rotatePointWithOffset(x, y, z, offsetX, 0, offsetZ);
     }
 
-    public static double[] rotatePointWithOffset(double x, double y, double z, double offsetX, double offsetY, double offsetZ) {
+    public static double[] rotatePointWithOffset(
+            double x, double y, double z, double offsetX, double offsetY, double offsetZ) {
         if (capture) {
             final double radians = Math.toRadians(rotationAngle);
             final double sin = Math.sin(radians);

@@ -11,8 +11,7 @@ import remoteio.common.lib.ModInfo;
 /**
  * @author dmillerw
  */
-public class ItemIOTool
-extends Item implements IIOTool {
+public class ItemIOTool extends Item implements IIOTool {
     public ItemIOTool() {
         setMaxDamage(0);
         setMaxStackSize(1);

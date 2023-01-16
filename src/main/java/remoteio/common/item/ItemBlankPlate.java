@@ -8,8 +8,7 @@ import remoteio.common.lib.ModInfo;
 /**
  * @author dmillerw
  */
-public class ItemBlankPlate
-extends Item{
+public class ItemBlankPlate extends Item {
     public ItemBlankPlate() {
         setCreativeTab(TabRemoteIO.TAB);
     }

@@ -22,9 +22,9 @@ import remoteio.client.render.RenderTileMachine;
 import remoteio.client.render.RenderTileRemoteInterface;
 import remoteio.client.render.RenderTileRemoteInventory;
 import remoteio.client.render.RenderTileTransceiver;
+import remoteio.common.CommonProxy;
 import remoteio.common.RemoteIO;
 import remoteio.common.core.helper.EventHelper;
-import remoteio.common.CommonProxy;
 import remoteio.common.network.ClientProxyPlayer;
 import remoteio.common.tile.TileIntelligentWorkbench;
 import remoteio.common.tile.TileMachineHeater;
@@ -36,7 +36,7 @@ import remoteio.common.tile.TileTransceiver;
 /**
  * @author dmillerw
  */
-public class ClientProxy extends CommonProxy{
+public class ClientProxy extends CommonProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
@@ -46,7 +46,8 @@ public class ClientProxy extends CommonProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileRemoteInventory.class, new RenderTileRemoteInventory());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMachineReservoir.class, new RenderTileMachine());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMachineHeater.class, new RenderTileMachine());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileIntelligentWorkbench.class, new RenderTileIntelligentWorkbench());
+        ClientRegistry.bindTileEntitySpecialRenderer(
+                TileIntelligentWorkbench.class, new RenderTileIntelligentWorkbench());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTransceiver.class, new RenderTileTransceiver());
 
         MinecraftForge.EVENT_BUS.register(SoundHandler.INSTANCE);
@@ -77,7 +78,8 @@ public class ClientProxy extends CommonProxy{
     }
 
     @Override
-    public void activateBlock(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float fx, float fy, float fz) {
+    public void activateBlock(
+            World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float fx, float fy, float fz) {
         if (entityPlayer instanceof EntityPlayerMP) {
             super.activateBlock(world, x, y, z, entityPlayer, side, fx, fy, fz);
         } else {
@@ -93,8 +95,20 @@ public class ClientProxy extends CommonProxy{
                 SoundHandler.INSTANCE.translateNextSound(x, y, z);
 
                 if (proxyPlayer.getHeldItem() != null) {
-                    if (proxyPlayer.getHeldItem().getItem().onItemUseFirst(proxyPlayer.getHeldItem(), proxyPlayer, proxyPlayer.worldObj, x, y, z, side, fx, fy, fz))
-                        return;
+                    if (proxyPlayer
+                            .getHeldItem()
+                            .getItem()
+                            .onItemUseFirst(
+                                    proxyPlayer.getHeldItem(),
+                                    proxyPlayer,
+                                    proxyPlayer.worldObj,
+                                    x,
+                                    y,
+                                    z,
+                                    side,
+                                    fx,
+                                    fy,
+                                    fz)) return;
                 }
                 block.onBlockActivated(entityClientPlayerMP.worldObj, x, y, z, proxyPlayer, side, fx, fy, fz);
             }

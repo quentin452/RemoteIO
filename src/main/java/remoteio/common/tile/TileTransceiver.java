@@ -1,10 +1,10 @@
 package remoteio.common.tile;
 
-import remoteio.common.RemoteIO;
-import remoteio.common.tile.core.TileCore;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+import remoteio.common.RemoteIO;
+import remoteio.common.tile.core.TileCore;
 
 /**
  * @author dmillerw
@@ -33,9 +33,11 @@ public class TileTransceiver extends TileCore {
     public void updateEntity() {
         if (!worldObj.isRemote) {
             if (forceUpdate || RemoteIO.channelRegistry.pollDirty(channel)) {
-                TileEntity tileEntity = worldObj.getTileEntity(xCoord + orientation.offsetX, yCoord + orientation.offsetY, zCoord + orientation.offsetZ);
+                TileEntity tileEntity = worldObj.getTileEntity(
+                        xCoord + orientation.offsetX, yCoord + orientation.offsetY, zCoord + orientation.offsetZ);
                 if (tileEntity instanceof TileRemoteInterface) {
-                    ((TileRemoteInterface) tileEntity).setRemotePosition(RemoteIO.channelRegistry.getChannelData(channel));
+                    ((TileRemoteInterface) tileEntity)
+                            .setRemotePosition(RemoteIO.channelRegistry.getChannelData(channel));
                 }
             }
         }

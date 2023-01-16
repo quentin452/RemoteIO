@@ -1,11 +1,5 @@
 package remoteio.client.gui;
 
-import remoteio.client.gui.button.GuiBetterButton;
-import remoteio.common.inventory.container.ContainerNull;
-import remoteio.common.lib.ModInfo;
-import remoteio.common.network.PacketHandler;
-import remoteio.common.network.packet.PacketServerSetChannel;
-import remoteio.common.tile.TileTransceiver;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -15,13 +9,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+import remoteio.client.gui.button.GuiBetterButton;
+import remoteio.common.inventory.container.ContainerNull;
+import remoteio.common.lib.ModInfo;
+import remoteio.common.network.PacketHandler;
+import remoteio.common.network.packet.PacketServerSetChannel;
+import remoteio.common.tile.TileTransceiver;
 
 /**
  * @author dmillerw
  */
 public class GuiTileSetChannel extends GuiContainer {
 
-    private static final ResourceLocation GUI_BLANK = new ResourceLocation(ModInfo.RESOURCE_PREFIX + "textures/gui/blank.png");
+    private static final ResourceLocation GUI_BLANK =
+            new ResourceLocation(ModInfo.RESOURCE_PREFIX + "textures/gui/blank.png");
 
     private final TileTransceiver tileTransceiver;
 
@@ -79,7 +80,8 @@ public class GuiTileSetChannel extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         fontRendererObj.drawString(StatCollector.translateToLocal("container.remoteio.channel"), 5, 5, 4210752);
-        fontRendererObj.drawSplitString(StatCollector.translateToLocal("container.remoteio.channel_desc"), 5, 35, 170, 4210752);
+        fontRendererObj.drawSplitString(
+                StatCollector.translateToLocal("container.remoteio.channel_desc"), 5, 35, 170, 4210752);
         textFieldChannel.drawTextBox();
     }
 

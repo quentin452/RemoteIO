@@ -1,12 +1,12 @@
 package remoteio.common.tile;
 
-import remoteio.common.tile.core.TileCore;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import remoteio.common.tile.core.TileCore;
 
 /**
  * @author dmillerw
@@ -40,7 +40,8 @@ public class TileMachineReservoir extends TileCore implements IFluidHandler {
     private void update() {
         int found = 0;
         for (ForgeDirection forgeDirection : ForgeDirection.VALID_DIRECTIONS) {
-            Block block = worldObj.getBlock(xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
+            Block block = worldObj.getBlock(
+                    xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
             if (block != null && (block == Blocks.water || block == Blocks.flowing_water)) found++;
         }
         boolean newFilled = found >= 2;
@@ -51,16 +52,19 @@ public class TileMachineReservoir extends TileCore implements IFluidHandler {
     private void push() {
         int found = 0;
         for (ForgeDirection forgeDirection : ForgeDirection.VALID_DIRECTIONS) {
-            TileEntity tileEntity = worldObj.getTileEntity(xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
+            TileEntity tileEntity = worldObj.getTileEntity(
+                    xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
             if (tileEntity instanceof IFluidHandler) found++;
         }
 
         final int amount = (int) ((float) FluidContainerRegistry.BUCKET_VOLUME / (float) found);
 
         for (ForgeDirection forgeDirection : ForgeDirection.VALID_DIRECTIONS) {
-            TileEntity tileEntity = worldObj.getTileEntity(xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
+            TileEntity tileEntity = worldObj.getTileEntity(
+                    xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
             if (tileEntity instanceof IFluidHandler) {
-                ((IFluidHandler) tileEntity).fill(forgeDirection.getOpposite(), new FluidStack(FluidRegistry.WATER, amount), true);
+                ((IFluidHandler) tileEntity)
+                        .fill(forgeDirection.getOpposite(), new FluidStack(FluidRegistry.WATER, amount), true);
             }
         }
     }
@@ -94,8 +98,10 @@ public class TileMachineReservoir extends TileCore implements IFluidHandler {
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-        return new FluidTankInfo[]{
-                new FluidTankInfo(new FluidStack(FluidRegistry.WATER, FluidContainerRegistry.BUCKET_VOLUME), FluidContainerRegistry.BUCKET_VOLUME)
+        return new FluidTankInfo[] {
+            new FluidTankInfo(
+                    new FluidStack(FluidRegistry.WATER, FluidContainerRegistry.BUCKET_VOLUME),
+                    FluidContainerRegistry.BUCKET_VOLUME)
         };
     }
 }

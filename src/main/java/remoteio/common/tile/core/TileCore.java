@@ -1,11 +1,11 @@
 package remoteio.common.tile.core;
 
-import remoteio.common.network.VanillaPacketHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import remoteio.common.network.VanillaPacketHelper;
 
 /**
  * @author dmillerw
@@ -16,11 +16,9 @@ public abstract class TileCore extends TileEntity {
 
     public abstract void readCustomNBT(NBTTagCompound nbt);
 
-    public void onClientUpdate(NBTTagCompound nbt) {
-    }
+    public void onClientUpdate(NBTTagCompound nbt) {}
 
-    public void onNeighborUpdated() {
-    }
+    public void onNeighborUpdated() {}
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {

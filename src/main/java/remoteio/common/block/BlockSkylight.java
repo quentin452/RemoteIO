@@ -1,17 +1,16 @@
 package remoteio.common.block;
 
-import remoteio.common.core.TabRemoteIO;
-import remoteio.common.core.handler.BlockUpdateTicker;
-import remoteio.common.lib.ModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import remoteio.common.core.TabRemoteIO;
+import remoteio.common.core.handler.BlockUpdateTicker;
+import remoteio.common.lib.ModInfo;
 
-public class BlockSkylight
-extends Block {
+public class BlockSkylight extends Block {
     private IIcon blank;
     private IIcon[] icons;
 
@@ -60,7 +59,9 @@ extends Block {
 
     @Override
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
-        return world.getBlock(x, y, z) == this ? world.getBlockMetadata(x, y, z) == 0 : super.shouldSideBeRendered(world, x, y, z, side);
+        return world.getBlock(x, y, z) == this
+                ? world.getBlockMetadata(x, y, z) == 0
+                : super.shouldSideBeRendered(world, x, y, z, side);
     }
 
     @Override
@@ -82,25 +83,50 @@ extends Block {
         return block == this && meta > 0;
     }
 
-    public IIcon getConnectedBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5, IIcon[] icons) {
+    public IIcon getConnectedBlockTexture(
+            IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5, IIcon[] icons) {
 
         boolean isOpenUp = false, isOpenDown = false, isOpenLeft = false, isOpenRight = false;
 
         switch (par5) {
             case 0:
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 - 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2 - 1, par3, par4),
+                        par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4))) {
                     isOpenDown = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 + 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2 + 1, par3, par4),
+                        par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4))) {
                     isOpenUp = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3, par4 - 1), par1IBlockAccess.getBlockMetadata(par2, par3, par4 - 1))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3, par4 - 1),
+                        par1IBlockAccess.getBlockMetadata(par2, par3, par4 - 1))) {
                     isOpenLeft = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3, par4 + 1), par1IBlockAccess.getBlockMetadata(par2, par3, par4 + 1))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3, par4 + 1),
+                        par1IBlockAccess.getBlockMetadata(par2, par3, par4 + 1))) {
                     isOpenRight = true;
                 }
 
@@ -137,19 +163,43 @@ extends Block {
                 }
                 break;
             case 1:
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 - 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2 - 1, par3, par4),
+                        par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4))) {
                     isOpenDown = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 + 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2 + 1, par3, par4),
+                        par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4))) {
                     isOpenUp = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3, par4 - 1), par1IBlockAccess.getBlockMetadata(par2, par3, par4 - 1))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3, par4 - 1),
+                        par1IBlockAccess.getBlockMetadata(par2, par3, par4 - 1))) {
                     isOpenLeft = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3, par4 + 1), par1IBlockAccess.getBlockMetadata(par2, par3, par4 + 1))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3, par4 + 1),
+                        par1IBlockAccess.getBlockMetadata(par2, par3, par4 + 1))) {
                     isOpenRight = true;
                 }
 
@@ -186,19 +236,43 @@ extends Block {
                 }
                 break;
             case 2:
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 - 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3 - 1, par4),
+                        par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4))) {
                     isOpenDown = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 + 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3 + 1, par4),
+                        par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4))) {
                     isOpenUp = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 - 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2 - 1, par3, par4),
+                        par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4))) {
                     isOpenLeft = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 + 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2 + 1, par3, par4),
+                        par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4))) {
                     isOpenRight = true;
                 }
 
@@ -235,19 +309,43 @@ extends Block {
                 }
                 break;
             case 3:
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 - 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3 - 1, par4),
+                        par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4))) {
                     isOpenDown = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 + 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3 + 1, par4),
+                        par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4))) {
                     isOpenUp = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 - 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2 - 1, par3, par4),
+                        par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4))) {
                     isOpenLeft = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 + 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2 + 1, par3, par4),
+                        par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4))) {
                     isOpenRight = true;
                 }
 
@@ -284,19 +382,43 @@ extends Block {
                 }
                 break;
             case 4:
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 - 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3 - 1, par4),
+                        par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4))) {
                     isOpenDown = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 + 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3 + 1, par4),
+                        par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4))) {
                     isOpenUp = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3, par4 - 1), par1IBlockAccess.getBlockMetadata(par2, par3, par4 - 1))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3, par4 - 1),
+                        par1IBlockAccess.getBlockMetadata(par2, par3, par4 - 1))) {
                     isOpenLeft = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3, par4 + 1), par1IBlockAccess.getBlockMetadata(par2, par3, par4 + 1))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3, par4 + 1),
+                        par1IBlockAccess.getBlockMetadata(par2, par3, par4 + 1))) {
                     isOpenRight = true;
                 }
 
@@ -333,19 +455,43 @@ extends Block {
                 }
                 break;
             case 5:
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 - 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3 - 1, par4),
+                        par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4))) {
                     isOpenDown = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 + 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3 + 1, par4),
+                        par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4))) {
                     isOpenUp = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3, par4 - 1), par1IBlockAccess.getBlockMetadata(par2, par3, par4 - 1))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3, par4 - 1),
+                        par1IBlockAccess.getBlockMetadata(par2, par3, par4 - 1))) {
                     isOpenLeft = true;
                 }
 
-                if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3, par4 + 1), par1IBlockAccess.getBlockMetadata(par2, par3, par4 + 1))) {
+                if (shouldConnectToBlock(
+                        par1IBlockAccess,
+                        par2,
+                        par3,
+                        par4,
+                        par1IBlockAccess.getBlock(par2, par3, par4 + 1),
+                        par1IBlockAccess.getBlockMetadata(par2, par3, par4 + 1))) {
                     isOpenRight = true;
                 }
 
@@ -395,16 +541,16 @@ extends Block {
     public void registerBlockIcons(IIconRegister register) {
         this.blank = register.registerIcon(ModInfo.RESOURCE_PREFIX + "blank");
         this.icons = new IIcon[16];
-        icons[0]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass");
-        icons[1]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_1_d");
-        icons[2]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_1_u");
-        icons[3]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_1_l");
-        icons[4]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_1_r");
-        icons[5]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_h");
-        icons[6]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_v");
-        icons[7]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_dl");
-        icons[8]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_dr");
-        icons[9]  = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_ul");
+        icons[0] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass");
+        icons[1] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_1_d");
+        icons[2] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_1_u");
+        icons[3] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_1_l");
+        icons[4] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_1_r");
+        icons[5] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_h");
+        icons[6] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_v");
+        icons[7] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_dl");
+        icons[8] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_dr");
+        icons[9] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_ul");
         icons[10] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_2_ur");
         icons[11] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_3_d");
         icons[12] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_3_u");
@@ -412,5 +558,4 @@ extends Block {
         icons[14] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_3_r");
         icons[15] = register.registerIcon(ModInfo.RESOURCE_PREFIX + "skylight/glass_4");
     }
-
 }

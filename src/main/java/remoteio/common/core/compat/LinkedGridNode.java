@@ -5,15 +5,14 @@ import appeng.api.networking.*;
 import appeng.api.util.IReadOnlyCollection;
 import appeng.util.ReadOnlyCollection;
 import com.google.common.collect.Lists;
-import remoteio.common.core.TransferType;
-import remoteio.common.tile.TileRemoteInterface;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import java.lang.ref.WeakReference;
 import java.util.EnumSet;
 import java.util.List;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import remoteio.common.core.TransferType;
+import remoteio.common.tile.TileRemoteInterface;
 
 /**
  * @author dmillerw
@@ -43,7 +42,8 @@ public class LinkedGridNode implements IGridNode {
     public void beginVisit(IGridVisitor g) {
         IGridNode gridNode = getParentNode();
         IGridNode ourNode = getOurNode();
-        if (gridNode != null) gridNode.beginVisit(g); else if (ourNode != null) ourNode.beginVisit(g);
+        if (gridNode != null) gridNode.beginVisit(g);
+        else if (ourNode != null) ourNode.beginVisit(g);
     }
 
     @Override
@@ -136,7 +136,8 @@ public class LinkedGridNode implements IGridNode {
     public boolean meetsChannelRequirements() {
         IGridNode gridNode = getParentNode();
         IGridNode ourNode = getOurNode();
-        return (gridNode != null && gridNode.meetsChannelRequirements()) || (ourNode != null && ourNode.meetsChannelRequirements());
+        return (gridNode != null && gridNode.meetsChannelRequirements())
+                || (ourNode != null && ourNode.meetsChannelRequirements());
     }
 
     @Override

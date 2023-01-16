@@ -13,7 +13,11 @@ public class IC2TransferHelper {
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
             ItemStack stack = inventory.getStackInSlot(i);
 
-            if (stack != null && stack.getItem() instanceof IElectricItem && ElectricItem.manager.charge(stack, 1, ((IElectricItem) stack.getItem()).getTier(stack), true, true) == 1) {
+            if (stack != null
+                    && stack.getItem() instanceof IElectricItem
+                    && ElectricItem.manager.charge(
+                                    stack, 1, ((IElectricItem) stack.getItem()).getTier(stack), true, true)
+                            == 1) {
                 return true;
             }
         }
@@ -40,9 +44,11 @@ public class IC2TransferHelper {
             ItemStack stack = inventory.getStackInSlot(i);
 
             if (stack != null && stack.getItem() instanceof IElectricItem) {
-                double chargeAmount = ElectricItem.manager.charge(stack, amount, ((IElectricItem) stack.getItem()).getTier(stack), false, true);
+                double chargeAmount = ElectricItem.manager.charge(
+                        stack, amount, ((IElectricItem) stack.getItem()).getTier(stack), false, true);
                 if (amount - chargeAmount >= 0) {
-                    amount -= ElectricItem.manager.charge(stack, amount, ((IElectricItem) stack.getItem()).getTier(stack), false, false);
+                    amount -= ElectricItem.manager.charge(
+                            stack, amount, ((IElectricItem) stack.getItem()).getTier(stack), false, false);
                 } else {
                     break;
                 }
@@ -56,9 +62,11 @@ public class IC2TransferHelper {
             ItemStack stack = inventory.getStackInSlot(i);
 
             if (stack != null && stack.getItem() instanceof IElectricItem) {
-                double dischargeAmount = ElectricItem.manager.discharge(stack, amount, ((IElectricItem) stack.getItem()).getTier(stack), false, true, true);
+                double dischargeAmount = ElectricItem.manager.discharge(
+                        stack, amount, ((IElectricItem) stack.getItem()).getTier(stack), false, true, true);
                 if (amount - dischargeAmount >= 0) {
-                    amount -= ElectricItem.manager.discharge(stack, amount, ((IElectricItem) stack.getItem()).getTier(stack), false, true, false);
+                    amount -= ElectricItem.manager.discharge(
+                            stack, amount, ((IElectricItem) stack.getItem()).getTier(stack), false, true, false);
                 } else {
                     break;
                 }

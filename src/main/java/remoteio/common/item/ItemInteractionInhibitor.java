@@ -1,7 +1,6 @@
 package remoteio.common.item;
 
-import remoteio.common.core.TabRemoteIO;
-import remoteio.common.lib.ModInfo;
+import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,14 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import java.util.List;
+import remoteio.common.core.TabRemoteIO;
+import remoteio.common.lib.ModInfo;
 
 /**
  * @author dmillerw
  */
-public class ItemInteractionInhibitor
-extends Item {
+public class ItemInteractionInhibitor extends Item {
     private IIcon iconInactive;
     private IIcon iconActive;
 
@@ -32,17 +30,25 @@ extends Item {
         // Status
         switch (itemStack.getItemDamage()) {
             case 0:
-            case 2: list.add(" - " + StatCollector.translateToLocal("inhibitor.inactive")); break;
+            case 2:
+                list.add(" - " + StatCollector.translateToLocal("inhibitor.inactive"));
+                break;
             case 1:
-            case 3: list.add(" - " + StatCollector.translateToLocal("inhibitor.active")); break;
+            case 3:
+                list.add(" - " + StatCollector.translateToLocal("inhibitor.active"));
+                break;
         }
 
         // Block/Item
         switch (itemStack.getItemDamage()) {
             case 0:
-            case 1: list.add(" - " + StatCollector.translateToLocal("inhibitor.block")); break;
+            case 1:
+                list.add(" - " + StatCollector.translateToLocal("inhibitor.block"));
+                break;
             case 2:
-            case 3: list.add(" - " + StatCollector.translateToLocal("inhibitor.item")); break;
+            case 3:
+                list.add(" - " + StatCollector.translateToLocal("inhibitor.item"));
+                break;
         }
     }
 

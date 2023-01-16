@@ -56,7 +56,10 @@ public class GuiButtonCustom extends GuiButton {
     public void drawButton(Minecraft mc, int x, int y) {
         if (visible) {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            this.field_146123_n = x >= offsetX + this.xPosition && y >= offsetY + this.yPosition && x < offsetX + this.xPosition + this.width && y < offsetY + this.yPosition + this.height;
+            this.field_146123_n = x >= offsetX + this.xPosition
+                    && y >= offsetY + this.yPosition
+                    && x < offsetX + this.xPosition + this.width
+                    && y < offsetY + this.yPosition + this.height;
             int k = this.getHoverState(this.field_146123_n);
             GL11.glEnable(GL11.GL_BLEND);
             OpenGlHelper.glBlendFunc(770, 771, 1, 0);
@@ -65,9 +68,16 @@ public class GuiButtonCustom extends GuiButton {
             Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 
             if (k == 1) { // Default
-                this.drawTexturedModalRect(offsetX + this.xPosition, offsetY + this.yPosition, uNormal, vNormal, this.width, this.height);
+                this.drawTexturedModalRect(
+                        offsetX + this.xPosition, offsetY + this.yPosition, uNormal, vNormal, this.width, this.height);
             } else if (k == 2) { // Hover
-                this.drawTexturedModalRect(offsetX + this.xPosition, offsetY + this.yPosition, uHighlight, vHighlight, this.width, this.height);
+                this.drawTexturedModalRect(
+                        offsetX + this.xPosition,
+                        offsetY + this.yPosition,
+                        uHighlight,
+                        vHighlight,
+                        this.width,
+                        this.height);
             }
 
             this.mouseDragged(mc, x, y);
@@ -81,13 +91,23 @@ public class GuiButtonCustom extends GuiButton {
                     l = 16777120;
                 }
 
-                this.drawCenteredString(Minecraft.getMinecraft().fontRenderer, this.displayString, offsetX + this.xPosition + this.width / 2, offsetY + this.yPosition + (this.height - 8) / 2, l);
+                this.drawCenteredString(
+                        Minecraft.getMinecraft().fontRenderer,
+                        this.displayString,
+                        offsetX + this.xPosition + this.width / 2,
+                        offsetY + this.yPosition + (this.height - 8) / 2,
+                        l);
             }
         }
     }
 
     @Override
     public boolean mousePressed(Minecraft mc, int x, int y) {
-        return this.enabled && this.visible && x >= offsetX + this.xPosition && y >= offsetY + this.yPosition && x < offsetX + this.xPosition + this.width && y < offsetY + this.yPosition + this.height;
+        return this.enabled
+                && this.visible
+                && x >= offsetX + this.xPosition
+                && y >= offsetY + this.yPosition
+                && x < offsetX + this.xPosition + this.width
+                && y < offsetY + this.yPosition + this.height;
     }
 }

@@ -3,12 +3,12 @@ package remoteio.common.network.packet;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import remoteio.common.item.ItemWirelessLocationChip;
-import remoteio.common.lib.ModItems;
-import remoteio.common.tile.TileTransceiver;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import remoteio.common.item.ItemWirelessLocationChip;
+import remoteio.common.lib.ModItems;
+import remoteio.common.tile.TileTransceiver;
 
 /**
  * @author dmillerw
@@ -47,7 +47,8 @@ public class PacketServerSetChannel implements IMessage, IMessageHandler<PacketS
     public IMessage onMessage(PacketServerSetChannel message, MessageContext ctx) {
         EntityPlayerMP entityPlayerMP = ctx.getServerHandler().playerEntity;
         if (message.y > 0) {
-            TileTransceiver tileTransceiver = (TileTransceiver) entityPlayerMP.worldObj.getTileEntity(message.x, message.y, message.z);
+            TileTransceiver tileTransceiver =
+                    (TileTransceiver) entityPlayerMP.worldObj.getTileEntity(message.x, message.y, message.z);
             tileTransceiver.setChannel(message.channel);
         } else {
             ItemStack itemStack = entityPlayerMP.getCurrentEquippedItem();

@@ -2,11 +2,11 @@ package remoteio.common.recipe;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
-import remoteio.common.lib.ModItems;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+import remoteio.common.lib.ModItems;
 
 /**
  * @author dmillerw

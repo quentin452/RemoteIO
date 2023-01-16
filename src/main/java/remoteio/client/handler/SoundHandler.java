@@ -26,7 +26,8 @@ public class SoundHandler {
     @SubscribeEvent
     public void onSoundPlayed(PlaySoundEvent17 event) {
         if (translate) {
-            event.result = new PositionedSoundRecord(event.sound.getPositionedSoundLocation(), event.sound.getVolume(), event.sound.getPitch(), x, y, z);
+            event.result = new PositionedSoundRecord(
+                    event.sound.getPositionedSoundLocation(), event.sound.getVolume(), event.sound.getPitch(), x, y, z);
             translate = false;
         }
     }

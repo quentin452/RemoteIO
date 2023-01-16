@@ -1,8 +1,8 @@
 package remoteio.common.lib;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import remoteio.common.item.*;
 import net.minecraft.item.Item;
+import remoteio.common.item.*;
 
 /**
  * @author dmillerw

@@ -1,9 +1,9 @@
 package remoteio.common.inventory.container;
 
-import remoteio.common.inventory.container.core.ContainerIO;
-import remoteio.common.tile.TileRemoteInterface;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import remoteio.common.inventory.container.core.ContainerIO;
+import remoteio.common.tile.TileRemoteInterface;
 
 /**
  * @author dmillerw

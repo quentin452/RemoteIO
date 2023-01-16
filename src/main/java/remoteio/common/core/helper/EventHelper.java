@@ -2,9 +2,8 @@ package remoteio.common.core.helper;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.common.MinecraftForge;
-
 import java.lang.reflect.Method;
+import net.minecraftforge.common.MinecraftForge;
 
 /**
  * @author dmillerw

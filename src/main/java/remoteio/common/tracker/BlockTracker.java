@@ -3,13 +3,12 @@ package remoteio.common.tracker;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
-import remoteio.common.lib.DimensionalCoords;
-import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import net.minecraft.block.Block;
+import net.minecraft.world.IBlockAccess;
+import remoteio.common.lib.DimensionalCoords;
 
 /**
  * @author dmillerw
@@ -51,15 +50,21 @@ public class BlockTracker {
                 if (trackedBlock.isDead) {
                     iterator.remove();
                 } else {
-                    if (trackedBlock.coordinates.getBlock() != trackedBlock.lastBlock || trackedBlock.coordinates.getMeta() != trackedBlock.lastMeta) {
+                    if (trackedBlock.coordinates.getBlock() != trackedBlock.lastBlock
+                            || trackedBlock.coordinates.getMeta() != trackedBlock.lastMeta) {
                         trackedBlock.callback();
                         trackedBlock.lastBlock = trackedBlock.coordinates.getBlock();
                         trackedBlock.lastMeta = trackedBlock.coordinates.getMeta();
                     } else {
                         Block block = trackedBlock.coordinates.getBlock();
 
-                        for (int i=0; i<6; i++) {
-                            int comparator = block.getComparatorInputOverride(trackedBlock.coordinates.getWorld(), trackedBlock.coordinates.x, trackedBlock.coordinates.y, trackedBlock.coordinates.z, i);
+                        for (int i = 0; i < 6; i++) {
+                            int comparator = block.getComparatorInputOverride(
+                                    trackedBlock.coordinates.getWorld(),
+                                    trackedBlock.coordinates.x,
+                                    trackedBlock.coordinates.y,
+                                    trackedBlock.coordinates.z,
+                                    i);
                             if (comparator != trackedBlock.lastComparatorValue) {
                                 trackedBlock.callback();
                                 trackedBlock.lastComparatorValue = comparator;
@@ -67,16 +72,26 @@ public class BlockTracker {
                             }
                         }
 
-                        for (int i=0; i<6; i++) {
-                            int redstone = block.isProvidingWeakPower(trackedBlock.coordinates.getWorld(), trackedBlock.coordinates.x, trackedBlock.coordinates.y, trackedBlock.coordinates.z, i);
+                        for (int i = 0; i < 6; i++) {
+                            int redstone = block.isProvidingWeakPower(
+                                    trackedBlock.coordinates.getWorld(),
+                                    trackedBlock.coordinates.x,
+                                    trackedBlock.coordinates.y,
+                                    trackedBlock.coordinates.z,
+                                    i);
                             if (redstone != trackedBlock.lastWeakRedstoneValue) {
                                 trackedBlock.callback();
                                 trackedBlock.lastWeakRedstoneValue = redstone;
                             }
                         }
 
-                        for (int i=0; i<6; i++) {
-                            int redstone = block.isProvidingStrongPower(trackedBlock.coordinates.getWorld(), trackedBlock.coordinates.x, trackedBlock.coordinates.y, trackedBlock.coordinates.z, i);
+                        for (int i = 0; i < 6; i++) {
+                            int redstone = block.isProvidingStrongPower(
+                                    trackedBlock.coordinates.getWorld(),
+                                    trackedBlock.coordinates.x,
+                                    trackedBlock.coordinates.y,
+                                    trackedBlock.coordinates.z,
+                                    i);
                             if (redstone != trackedBlock.lastStrongRedstoneValue) {
                                 trackedBlock.callback();
                                 trackedBlock.lastStrongRedstoneValue = redstone;
