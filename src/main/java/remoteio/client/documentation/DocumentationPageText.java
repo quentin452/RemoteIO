@@ -1,16 +1,18 @@
 package remoteio.client.documentation;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.StatCollector;
+
 import remoteio.client.gui.GuiDocumentation;
 import remoteio.common.lib.Strings;
+import cpw.mods.fml.client.FMLClientHandler;
 
 /**
  * @author dmillerw
  */
 public class DocumentationPageText implements IDocumentationPage {
+
     private String unlocalizedPrefix;
 
     public DocumentationPageText(String unlocalizedPrefix) {

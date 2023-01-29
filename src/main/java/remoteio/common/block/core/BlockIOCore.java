@@ -1,7 +1,5 @@
 package remoteio.common.block.core;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -12,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import remoteio.common.RemoteIO;
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.core.helper.InventoryHelper;
@@ -19,11 +18,14 @@ import remoteio.common.core.helper.mod.ToolHelper;
 import remoteio.common.lib.ModInfo;
 import remoteio.common.tile.TileRemoteInterface;
 import remoteio.common.tile.core.TileIOCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author dmillerw
  */
 public abstract class BlockIOCore extends BlockContainer {
+
     @SideOnly(Side.CLIENT)
     public static IIcon[] icons;
 
@@ -38,8 +40,8 @@ public abstract class BlockIOCore extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy, float fz) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy,
+            float fz) {
         TileIOCore tile = (TileIOCore) world.getTileEntity(x, y, z);
 
         if (player.getCurrentEquippedItem() != null) {

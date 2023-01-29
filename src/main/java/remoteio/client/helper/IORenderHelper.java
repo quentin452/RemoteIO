@@ -7,6 +7,7 @@ import net.minecraft.util.IIcon;
  * @author dmillerw
  */
 public class IORenderHelper {
+
     public static void renderCube(IIcon icon) {
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();

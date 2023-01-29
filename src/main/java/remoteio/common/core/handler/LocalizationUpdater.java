@@ -1,25 +1,29 @@
 package remoteio.common.core.handler;
 
-import com.google.common.collect.Maps;
-import com.google.common.io.ByteStreams;
-import com.google.gson.Gson;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.StringTranslate;
 import net.minecraftforge.common.config.Configuration;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Maps;
+import com.google.common.io.ByteStreams;
+import com.google.gson.Gson;
+
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author dmillerw
@@ -29,9 +33,9 @@ public class LocalizationUpdater {
     private static final String LANG_DIR = "https://api.github.com/repos/%s/%s/contents/%s?ref=%s";
     private static final String RAW_URL = "https://raw.githubusercontent.com/%s/%s/%s";
 
-    private static final String[] INSTANCE = new String[] {"instance", "field_74817_a", "c"};
-    private static final String[] LANGUAGE_MAP = new String[] {"languageList", "field_74816_c", "d"};
-    private static final String[] LAST_UPDATE = new String[] {"lastUpdateTimeInMilliseconds", "field_150511_e", "e"};
+    private static final String[] INSTANCE = new String[] { "instance", "field_74817_a", "c" };
+    private static final String[] LANGUAGE_MAP = new String[] { "languageList", "field_74816_c", "d" };
+    private static final String[] LAST_UPDATE = new String[] { "lastUpdateTimeInMilliseconds", "field_150511_e", "e" };
 
     private static final Logger LOGGER = LogManager.getLogger("RemoteIO:Localization");
 
@@ -64,6 +68,7 @@ public class LocalizationUpdater {
                 .getBoolean(false);
         if (!optout) {
             Thread thread = new Thread(new Runnable() {
+
                 @Override
                 public void run() {
                     try {
@@ -81,8 +86,8 @@ public class LocalizationUpdater {
                                 URL url1 = new URL(String.format(rawUrl, aJson.get("path")));
                                 InputStream con1 = url1.openStream();
                                 Map<String, String> map = StringTranslate.parseLangFile(con1);
-                                LocalizationUpdater.this.loadedLangFiles.put(
-                                        name.substring(0, name.lastIndexOf(".lang")), map);
+                                LocalizationUpdater.this.loadedLangFiles
+                                        .put(name.substring(0, name.lastIndexOf(".lang")), map);
                                 con1.close();
                             }
                         }
@@ -101,6 +106,7 @@ public class LocalizationUpdater {
     public void registerListener() {
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager())
                 .registerReloadListener(new IResourceManagerReloadListener() {
+
                     @Override
                     public void onResourceManagerReload(IResourceManager resourceManager) {
                         LocalizationUpdater.this.loadLangFiles();
@@ -111,10 +117,8 @@ public class LocalizationUpdater {
     // Called whenever the resource manager reloads, to load any lang files that the thread gathered
     private void loadLangFiles() {
         if (!optout) {
-            HashMap<String, String> map = (HashMap<String, String>) loadedLangFiles.get(Minecraft.getMinecraft()
-                    .getLanguageManager()
-                    .getCurrentLanguage()
-                    .getLanguageCode());
+            HashMap<String, String> map = (HashMap<String, String>) loadedLangFiles
+                    .get(Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode());
             if (map != null) {
                 StringTranslateDelegate.inject(map);
             }
@@ -122,6 +126,7 @@ public class LocalizationUpdater {
     }
 
     private static class StringTranslateDelegate {
+
         private static StringTranslate instance;
 
         public static StringTranslate getInstance() {
@@ -136,21 +141,19 @@ public class LocalizationUpdater {
                             break;
                         }
                     }
-                } catch (Exception ignored) {
-                }
+                } catch (Exception ignored) {}
             }
             return instance;
         }
 
         public static void inject(HashMap<String, String> map) {
             try {
-                Map<String, String> languageMap =
-                        ObfuscationReflectionHelper.getPrivateValue(StringTranslate.class, getInstance(), LANGUAGE_MAP);
+                Map<String, String> languageMap = ObfuscationReflectionHelper
+                        .getPrivateValue(StringTranslate.class, getInstance(), LANGUAGE_MAP);
                 languageMap.putAll(map);
-                ObfuscationReflectionHelper.setPrivateValue(
-                        StringTranslate.class, getInstance(), System.currentTimeMillis(), LAST_UPDATE);
-            } catch (Exception ignored) {
-            }
+                ObfuscationReflectionHelper
+                        .setPrivateValue(StringTranslate.class, getInstance(), System.currentTimeMillis(), LAST_UPDATE);
+            } catch (Exception ignored) {}
         }
     }
 }

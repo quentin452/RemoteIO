@@ -1,10 +1,5 @@
 package remoteio.client;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -13,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+
 import remoteio.client.documentation.Documentation;
 import remoteio.client.handler.SoundHandler;
 import remoteio.client.handler.TooltipEventHandler;
@@ -32,6 +28,11 @@ import remoteio.common.tile.TileMachineReservoir;
 import remoteio.common.tile.TileRemoteInterface;
 import remoteio.common.tile.TileRemoteInventory;
 import remoteio.common.tile.TileTransceiver;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * @author dmillerw
@@ -46,8 +47,8 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileRemoteInventory.class, new RenderTileRemoteInventory());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMachineReservoir.class, new RenderTileMachine());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMachineHeater.class, new RenderTileMachine());
-        ClientRegistry.bindTileEntitySpecialRenderer(
-                TileIntelligentWorkbench.class, new RenderTileIntelligentWorkbench());
+        ClientRegistry
+                .bindTileEntitySpecialRenderer(TileIntelligentWorkbench.class, new RenderTileIntelligentWorkbench());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTransceiver.class, new RenderTileTransceiver());
 
         MinecraftForge.EVENT_BUS.register(SoundHandler.INSTANCE);
@@ -78,8 +79,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void activateBlock(
-            World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float fx, float fy, float fz) {
+    public void activateBlock(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float fx, float fy,
+            float fz) {
         if (entityPlayer instanceof EntityPlayerMP) {
             super.activateBlock(world, x, y, z, entityPlayer, side, fx, fy, fz);
         } else {
@@ -95,20 +96,18 @@ public class ClientProxy extends CommonProxy {
                 SoundHandler.INSTANCE.translateNextSound(x, y, z);
 
                 if (proxyPlayer.getHeldItem() != null) {
-                    if (proxyPlayer
-                            .getHeldItem()
-                            .getItem()
-                            .onItemUseFirst(
-                                    proxyPlayer.getHeldItem(),
-                                    proxyPlayer,
-                                    proxyPlayer.worldObj,
-                                    x,
-                                    y,
-                                    z,
-                                    side,
-                                    fx,
-                                    fy,
-                                    fz)) return;
+                    if (proxyPlayer.getHeldItem().getItem().onItemUseFirst(
+                            proxyPlayer.getHeldItem(),
+                            proxyPlayer,
+                            proxyPlayer.worldObj,
+                            x,
+                            y,
+                            z,
+                            side,
+                            fx,
+                            fy,
+                            fz))
+                        return;
                 }
                 block.onBlockActivated(entityClientPlayerMP.worldObj, x, y, z, proxyPlayer, side, fx, fy, fz);
             }

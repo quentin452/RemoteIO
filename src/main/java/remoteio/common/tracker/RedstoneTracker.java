@@ -1,13 +1,15 @@
 package remoteio.common.tracker;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import remoteio.common.core.TransferType;
 import remoteio.common.lib.DimensionalCoords;
 import remoteio.common.tile.TileRemoteInterface;
+
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 /**
  * @author dmillerw
@@ -59,8 +61,7 @@ public class RedstoneTracker {
 
     private static int default_getIndirectPowerLevelTo(World world, int x, int y, int z, int side) {
         Block block = world.getBlock(x, y, z);
-        return block.shouldCheckWeakPower(world, x, y, z, side)
-                ? world.getBlockPowerInput(x, y, z)
+        return block.shouldCheckWeakPower(world, x, y, z, side) ? world.getBlockPowerInput(x, y, z)
                 : block.isProvidingWeakPower(world, x, y, z, side);
     }
 }

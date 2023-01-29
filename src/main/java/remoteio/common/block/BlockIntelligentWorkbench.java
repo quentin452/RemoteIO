@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import remoteio.common.RemoteIO;
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.core.handler.GuiHandler;
@@ -33,8 +34,8 @@ public class BlockIntelligentWorkbench extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy, float fz) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy,
+            float fz) {
         player.openGui(RemoteIO.instance, GuiHandler.GUI_INTELLIGENT_WORKBENCH, world, x, y, z);
         return true;
     }

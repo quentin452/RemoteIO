@@ -1,14 +1,16 @@
 package remoteio.common.tracker;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.relauncher.Side;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
 import net.minecraft.block.Block;
 import net.minecraft.world.IBlockAccess;
+
 import remoteio.common.lib.DimensionalCoords;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
 
 /**
  * @author dmillerw
@@ -104,6 +106,7 @@ public class BlockTracker {
     }
 
     public static class TrackedBlock {
+
         public final DimensionalCoords coordinates;
         public Block lastBlock;
         public int lastMeta;
@@ -133,6 +136,7 @@ public class BlockTracker {
     }
 
     public static interface ITrackerCallback {
+
         public void callback(IBlockAccess world, int x, int y, int z);
     }
 }

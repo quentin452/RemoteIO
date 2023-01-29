@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+
 import remoteio.api.IIOTool;
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.lib.ModInfo;
@@ -12,6 +13,7 @@ import remoteio.common.lib.ModInfo;
  * @author dmillerw
  */
 public class ItemIOTool extends Item implements IIOTool {
+
     public ItemIOTool() {
         setMaxDamage(0);
         setMaxStackSize(1);

@@ -1,6 +1,7 @@
 package remoteio.common.item;
 
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -10,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
+
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.lib.DimensionalCoords;
 import remoteio.common.lib.ModInfo;
@@ -20,6 +22,7 @@ import remoteio.common.tile.TileRemoteInventory;
  * @author dmillerw
  */
 public final class ItemLocationChip extends Item {
+
     public ItemLocationChip() {
         setMaxStackSize(1);
         setCreativeTab(TabRemoteIO.TAB);
@@ -29,24 +32,14 @@ public final class ItemLocationChip extends Item {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
         DimensionalCoords coords = ItemLocationChip.getCoordinates(stack);
         if (coords != null) {
-            list.add("Dimension: "
-                    + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
+            list.add("Dimension: " + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
             list.add("X: " + coords.x + " Y: " + coords.y + " Z: " + coords.z);
         }
     }
 
     @Override
-    public boolean onItemUseFirst(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(x, y, z);
 

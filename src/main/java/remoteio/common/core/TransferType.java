@@ -2,12 +2,14 @@ package remoteio.common.core;
 
 import static remoteio.common.lib.DependencyInfo.Paths.*;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 import java.util.Map;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 public class TransferType {
 
@@ -20,7 +22,7 @@ public class TransferType {
 
     // ENERGY
     public static final int ENERGY_IC2 = 10;
-    //	public static final int ENERGY_BC = 11; // BC power has since been replaced with RF
+    // public static final int ENERGY_BC = 11; // BC power has since been replaced with RF
     public static final int ENERGY_RF = 12;
 
     // MISC
@@ -31,7 +33,10 @@ public class TransferType {
         registerType(MATTER_ITEM, IInventory.class, ISidedInventory.class);
         registerType(MATTER_FLUID, IFluidHandler.class);
         registerType(
-                MATTER_ESSENTIA, Thaumcraft.IASPECTCONTAINER, Thaumcraft.IASPECTSOURCE, Thaumcraft.IESSENTIATRANSPORT);
+                MATTER_ESSENTIA,
+                Thaumcraft.IASPECTCONTAINER,
+                Thaumcraft.IASPECTSOURCE,
+                Thaumcraft.IESSENTIATRANSPORT);
 
         registerType(
                 ENERGY_IC2,

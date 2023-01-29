@@ -4,6 +4,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+
 import remoteio.core.MappingHelper;
 import remoteio.core.mapping.MappingConstants;
 
@@ -19,7 +20,7 @@ public class TransformWorld implements ITransformer {
 
     @Override
     public String[] getClasses() {
-        return new String[] {"net.minecraft.world.World"};
+        return new String[] { "net.minecraft.world.World" };
     }
 
     @Override
@@ -50,12 +51,13 @@ public class TransformWorld implements ITransformer {
             targetNode.instructions.add(new VarInsnNode(Opcodes.ILOAD, 2));
             targetNode.instructions.add(new VarInsnNode(Opcodes.ILOAD, 3));
             targetNode.instructions.add(new VarInsnNode(Opcodes.ILOAD, 4));
-            targetNode.instructions.add(new MethodInsnNode(
-                    Opcodes.INVOKESTATIC,
-                    METHOD_HANDLER,
-                    METHOD_REDSTONE,
-                    String.format(METHOD_REDSTONE_DESC, world),
-                    false));
+            targetNode.instructions.add(
+                    new MethodInsnNode(
+                            Opcodes.INVOKESTATIC,
+                            METHOD_HANDLER,
+                            METHOD_REDSTONE,
+                            String.format(METHOD_REDSTONE_DESC, world),
+                            false));
             targetNode.instructions.add(new InsnNode(Opcodes.IRETURN));
 
             MappingHelper.logger.warn("Successfully transformed World.class!");

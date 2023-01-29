@@ -1,14 +1,10 @@
 package remoteio.common.recipe;
 
-import appeng.api.AEApi;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
-import ic2.api.item.IC2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
 import remoteio.common.core.TransferType;
 import remoteio.common.core.UpgradeType;
 import remoteio.common.core.helper.ModHelper;
@@ -16,6 +12,11 @@ import remoteio.common.core.helper.RecipeHelper;
 import remoteio.common.lib.DependencyInfo;
 import remoteio.common.lib.ModBlocks;
 import remoteio.common.lib.ModItems;
+import appeng.api.AEApi;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
+import ic2.api.item.IC2Items;
 
 /**
  * @author dmillerw
@@ -107,7 +108,9 @@ public class ModRecipes {
 
         // INTELLIGENT WORKBENCH
         GameRegistry.addShapelessRecipe(
-                new ItemStack(ModBlocks.intelligentWorkbench), Blocks.crafting_table, ModItems.locationChip);
+                new ItemStack(ModBlocks.intelligentWorkbench),
+                Blocks.crafting_table,
+                ModItems.locationChip);
 
         // IO TOOL
         RecipeHelper.addOreRecipe(
@@ -122,15 +125,10 @@ public class ModRecipes {
                 'S',
                 Items.stick);
 
-        /*        // Testing Recipe
-        RecipeHelper.addOreRecipe(
-                new ItemStack(Items.diamond_sword),
-                " C ",
-                " C ",
-                " S ",
-                'C', Blocks.cobblestone,
-                'S', Items.stick
-        );*/
+        /*
+         * // Testing Recipe RecipeHelper.addOreRecipe( new ItemStack(Items.diamond_sword), " C ", " C ", " S ", 'C',
+         * Blocks.cobblestone, 'S', Items.stick );
+         */
 
         // PDA
         RecipeHelper.addOreRecipe(
@@ -307,17 +305,8 @@ public class ModRecipes {
 
     private static ItemStack[] getIC2Cables() {
         if (Loader.isModLoaded("IC2")) {
-            String[] cableTypes = new String[] {
-                "copper",
-                "insulatedCopper",
-                "gold",
-                "insulatedGold",
-                "iron",
-                "insulatedIron",
-                "insulatedTin",
-                "glassFiber",
-                "tin"
-            };
+            String[] cableTypes = new String[] { "copper", "insulatedCopper", "gold", "insulatedGold", "iron",
+                    "insulatedIron", "insulatedTin", "glassFiber", "tin" };
             ItemStack[] cables = new ItemStack[cableTypes.length];
 
             try {

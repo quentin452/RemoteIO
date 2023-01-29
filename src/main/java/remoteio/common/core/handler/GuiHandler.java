@@ -1,14 +1,15 @@
 package remoteio.common.core.handler;
 
-import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
 import remoteio.client.gui.*;
 import remoteio.common.inventory.InventoryItem;
 import remoteio.common.inventory.container.*;
 import remoteio.common.tile.TileRemoteInterface;
 import remoteio.common.tile.TileRemoteInventory;
 import remoteio.common.tile.TileTransceiver;
+import cpw.mods.fml.common.network.IGuiHandler;
 
 /**
  * @author dmillerw
@@ -28,14 +29,16 @@ public class GuiHandler implements IGuiHandler {
         switch (id) {
             case GUI_REMOTE_INTERFACE:
                 return new ContainerRemoteInterface(
-                        player.inventory, (TileRemoteInterface) world.getTileEntity(x, y, z));
+                        player.inventory,
+                        (TileRemoteInterface) world.getTileEntity(x, y, z));
 
             case GUI_RF_CONFIG:
                 return new ContainerNull();
 
             case GUI_REMOTE_INVENTORY:
                 return new ContainerRemoteInventory(
-                        player.inventory, (TileRemoteInventory) world.getTileEntity(x, y, z));
+                        player.inventory,
+                        (TileRemoteInventory) world.getTileEntity(x, y, z));
 
             case GUI_INTELLIGENT_WORKBENCH:
                 return new ContainerIntelligentWorkbench(player.inventory, world, x, y, z);

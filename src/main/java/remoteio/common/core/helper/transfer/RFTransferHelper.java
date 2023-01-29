@@ -1,9 +1,10 @@
 package remoteio.common.core.helper.transfer;
 
-import cofh.api.energy.IEnergyContainerItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
+import cofh.api.energy.IEnergyContainerItem;
+import ic2.api.item.IElectricItem;
 
 /**
  * @author dmillerw

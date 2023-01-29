@@ -1,11 +1,8 @@
 package remoteio.common.block;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -17,6 +14,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import remoteio.common.RemoteIO;
 import remoteio.common.block.core.BlockIOCore;
 import remoteio.common.core.TransferType;
@@ -27,6 +25,10 @@ import remoteio.common.lib.DimensionalCoords;
 import remoteio.common.lib.VisualState;
 import remoteio.common.tile.TileRemoteInterface;
 import remoteio.common.tile.core.TileIOCore;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author dmillerw
@@ -36,8 +38,8 @@ public class BlockRemoteInterface extends BlockIOCore {
     public static int renderID;
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy, float fz) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy,
+            float fz) {
         boolean result = super.onBlockActivated(world, x, y, z, player, side, fx, fy, fz);
 
         if (result) {
@@ -67,13 +69,11 @@ public class BlockRemoteInterface extends BlockIOCore {
     public float getBlockHardness(World world, int x, int y, int z) {
         TileRemoteInterface tile = (TileRemoteInterface) world.getTileEntity(x, y, z);
         if (tile != null && tile.remotePosition != null && tile.hasUpgradeChip(UpgradeType.REMOTE_CAMO)) {
-            return tile.remotePosition
-                    .getBlock()
-                    .getBlockHardness(
-                            tile.remotePosition.getWorld(),
-                            tile.remotePosition.x,
-                            tile.remotePosition.y,
-                            tile.remotePosition.z);
+            return tile.remotePosition.getBlock().getBlockHardness(
+                    tile.remotePosition.getWorld(),
+                    tile.remotePosition.x,
+                    tile.remotePosition.y,
+                    tile.remotePosition.z);
         } else {
             return super.getBlockHardness(world, x, y, z);
         }
@@ -83,14 +83,12 @@ public class BlockRemoteInterface extends BlockIOCore {
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         TileRemoteInterface tile = (TileRemoteInterface) world.getTileEntity(x, y, z);
         if (tile != null && tile.remotePosition != null && tile.hasTransferChip(TransferType.REDSTONE)) {
-            tile.remotePosition
-                    .getBlock()
-                    .onNeighborBlockChange(
-                            tile.remotePosition.getWorld(),
-                            tile.remotePosition.x,
-                            tile.remotePosition.y,
-                            tile.remotePosition.z,
-                            block);
+            tile.remotePosition.getBlock().onNeighborBlockChange(
+                    tile.remotePosition.getWorld(),
+                    tile.remotePosition.x,
+                    tile.remotePosition.y,
+                    tile.remotePosition.z,
+                    block);
             tile.markForUpdate();
         } else {
             super.onNeighborBlockChange(world, x, y, z, block);
@@ -209,12 +207,12 @@ public class BlockRemoteInterface extends BlockIOCore {
             int offsetY = there.y - y;
             int offsetZ = there.z - z;
 
-            Vec3 offsetStart =
-                    Vec3.createVectorHelper(start.xCoord + offsetX, start.yCoord + offsetY, start.zCoord + offsetZ);
+            Vec3 offsetStart = Vec3
+                    .createVectorHelper(start.xCoord + offsetX, start.yCoord + offsetY, start.zCoord + offsetZ);
             Vec3 offsetEnd = Vec3.createVectorHelper(end.xCoord + offsetX, end.yCoord + offsetY, end.zCoord + offsetZ);
 
-            MovingObjectPosition mob =
-                    remote.collisionRayTrace(world, there.x, there.y, there.z, offsetStart, offsetEnd);
+            MovingObjectPosition mob = remote
+                    .collisionRayTrace(world, there.x, there.y, there.z, offsetStart, offsetEnd);
 
             if (mob != null) {
                 mob.blockX -= offsetX;
@@ -277,8 +275,8 @@ public class BlockRemoteInterface extends BlockIOCore {
     }
 
     @Override
-    public void addCollisionBoxesToList(
-            World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list,
+            Entity entity) {
         TileRemoteInterface tile = (TileRemoteInterface) world.getTileEntity(x, y, z);
 
         if (tile != null && tile.visualState == VisualState.CAMOUFLAGE_REMOTE && tile.remotePosition != null) {
@@ -289,8 +287,8 @@ public class BlockRemoteInterface extends BlockIOCore {
             int offsetY = there.y - y;
             int offsetZ = there.z - z;
 
-            AxisAlignedBB newAABB = AxisAlignedBB.getBoundingBox(
-                            aabb.minX, aabb.minY, aabb.minZ, aabb.maxX, aabb.maxY, aabb.maxZ)
+            AxisAlignedBB newAABB = AxisAlignedBB
+                    .getBoundingBox(aabb.minX, aabb.minY, aabb.minZ, aabb.maxX, aabb.maxY, aabb.maxZ)
                     .offset(offsetX, offsetY, offsetZ);
             List newList = new ArrayList();
 
@@ -328,8 +326,7 @@ public class BlockRemoteInterface extends BlockIOCore {
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
         TileRemoteInterface tileRemoteInterface = (TileRemoteInterface) world.getTileEntity(x, y, z);
         if (tileRemoteInterface.remotePosition != null
-                && tileRemoteInterface.remotePosition.inWorld(
-                        FMLClientHandler.instance().getWorldClient())
+                && tileRemoteInterface.remotePosition.inWorld(FMLClientHandler.instance().getWorldClient())
                 && tileRemoteInterface.hasUpgradeChip(UpgradeType.REMOTE_CAMO)) {
             Block block = tileRemoteInterface.remotePosition.getBlock();
             if (block.getRenderType() == 0) {

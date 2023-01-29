@@ -1,16 +1,18 @@
 package remoteio.common.lib;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+
 import remoteio.common.block.*;
 import remoteio.common.block.item.ItemBlockRemoteInventory;
 import remoteio.common.item.block.ItemBlockMulti;
 import remoteio.common.tile.*;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author dmillerw
  */
 public class ModBlocks {
+
     public static Block remoteInterface;
     public static Block remoteInventory;
     public static Block machine;
@@ -24,14 +26,16 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(TileRemoteInterface.class, remoteInterface.getUnlocalizedName());
 
         remoteInventory = new BlockRemoteInventory().setBlockName("remote_inventory");
-        GameRegistry.registerBlock(
-                remoteInventory, ItemBlockRemoteInventory.class, remoteInventory.getUnlocalizedName());
+        GameRegistry
+                .registerBlock(remoteInventory, ItemBlockRemoteInventory.class, remoteInventory.getUnlocalizedName());
         GameRegistry.registerTileEntity(TileRemoteInventory.class, remoteInventory.getUnlocalizedName());
 
         machine = new BlockMachine().setBlockName("machine");
-        GameRegistry.registerBlock(machine, ItemBlockMulti.class, machine.getUnlocalizedName(), new Object[] {
-            new String[] {"reservoir", "heater"}
-        });
+        GameRegistry.registerBlock(
+                machine,
+                ItemBlockMulti.class,
+                machine.getUnlocalizedName(),
+                new Object[] { new String[] { "reservoir", "heater" } });
         GameRegistry.registerTileEntity(TileMachineReservoir.class, "remoteio:machine_reservoir");
         GameRegistry.registerTileEntity(TileMachineHeater.class, "remoteio:machine_heater");
 
@@ -42,8 +46,10 @@ public class ModBlocks {
         GameRegistry.registerBlock(intelligentWorkbench, "intelligentWorkbench");
         GameRegistry.registerTileEntity(TileIntelligentWorkbench.class, "remoteio:intelligentWorkbench");
 
-        /*        transceiver = new BlockTransceiver().setBlockName("transceiver");
-        GameRegistry.registerBlock(transceiver, ItemBlockTransceiver.class, "transceiver");
-        GameRegistry.registerTileEntity(TileTransceiver.class, "remoteio:transceiver");*/
+        /*
+         * transceiver = new BlockTransceiver().setBlockName("transceiver"); GameRegistry.registerBlock(transceiver,
+         * ItemBlockTransceiver.class, "transceiver"); GameRegistry.registerTileEntity(TileTransceiver.class,
+         * "remoteio:transceiver");
+         */
     }
 }

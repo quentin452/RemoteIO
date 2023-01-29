@@ -1,7 +1,9 @@
 package remoteio.common.core.helper;
 
 import java.nio.FloatBuffer;
+
 import net.minecraft.entity.Entity;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
@@ -79,21 +81,21 @@ public class MatrixHelper {
     public static Matrix4f getRotationMatrix(float x, float y, float z) {
         Matrix4f result = new Matrix4f();
 
-        //		Matrix4f matrixX = new Matrix4f();
-        //		Matrix4f matrixY = new Matrix4f();
-        //		Matrix4f matrixZ = new Matrix4f();
+        // Matrix4f matrixX = new Matrix4f();
+        // Matrix4f matrixY = new Matrix4f();
+        // Matrix4f matrixZ = new Matrix4f();
         Vector3f vectorX = new Vector3f(1, 0, 0);
         Vector3f vectorY = new Vector3f(0, 1, 0);
         Vector3f vectorZ = new Vector3f(0, 0, 1);
         //
         // MATRIX ROTATION
-        //		matrixX.rotate((float) Math.toRadians(x), vectorX);
-        //		matrixY.rotate((float) Math.toRadians(y), vectorY);
-        //		matrixZ.rotate((float) Math.toRadians(z), vectorZ);
+        // matrixX.rotate((float) Math.toRadians(x), vectorX);
+        // matrixY.rotate((float) Math.toRadians(y), vectorY);
+        // matrixZ.rotate((float) Math.toRadians(z), vectorZ);
         //
-        //		result = multiply(result, matrixX);
-        //		result = multiply(result, matrixY);
-        //		result = multiply(result, matrixZ);
+        // result = multiply(result, matrixX);
+        // result = multiply(result, matrixY);
+        // result = multiply(result, matrixZ);
 
         result.rotate((float) Math.toRadians(x), vectorX);
         result.rotate((float) Math.toRadians(y), vectorY);

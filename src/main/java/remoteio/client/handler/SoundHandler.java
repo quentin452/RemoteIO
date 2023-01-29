@@ -1,13 +1,15 @@
 package remoteio.client.handler;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraftforge.client.event.sound.PlaySoundEvent17;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * @author dmillerw
  */
 public class SoundHandler {
+
     public static final SoundHandler INSTANCE = new SoundHandler();
 
     public int x;
@@ -27,7 +29,12 @@ public class SoundHandler {
     public void onSoundPlayed(PlaySoundEvent17 event) {
         if (translate) {
             event.result = new PositionedSoundRecord(
-                    event.sound.getPositionedSoundLocation(), event.sound.getVolume(), event.sound.getPitch(), x, y, z);
+                    event.sound.getPositionedSoundLocation(),
+                    event.sound.getVolume(),
+                    event.sound.getPitch(),
+                    x,
+                    y,
+                    z);
             translate = false;
         }
     }

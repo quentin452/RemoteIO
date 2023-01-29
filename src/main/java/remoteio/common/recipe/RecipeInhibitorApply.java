@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
 import remoteio.common.lib.ModItems;
 
 /**
@@ -46,8 +47,8 @@ public class RecipeInhibitorApply implements IRecipe {
             }
         }
 
-        NBTTagCompound nbtTagCompound =
-                applyStack.hasTagCompound() ? applyStack.getTagCompound() : new NBTTagCompound();
+        NBTTagCompound nbtTagCompound = applyStack.hasTagCompound() ? applyStack.getTagCompound()
+                : new NBTTagCompound();
         if (inhibitor.getItemDamage() == 0 || inhibitor.getItemDamage() == 1) {
             nbtTagCompound.setByte("inhibit", (byte) 0);
         } else {

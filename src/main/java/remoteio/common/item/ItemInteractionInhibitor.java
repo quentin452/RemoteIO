@@ -1,6 +1,7 @@
 package remoteio.common.item;
 
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.lib.ModInfo;
 
@@ -16,6 +18,7 @@ import remoteio.common.lib.ModInfo;
  * @author dmillerw
  */
 public class ItemInteractionInhibitor extends Item {
+
     private IIcon iconInactive;
     private IIcon iconActive;
 

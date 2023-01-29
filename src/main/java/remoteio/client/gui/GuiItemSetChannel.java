@@ -8,8 +8,10 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
 import remoteio.client.gui.button.GuiBetterButton;
 import remoteio.common.inventory.container.ContainerNull;
 import remoteio.common.item.ItemWirelessLocationChip;
@@ -22,8 +24,8 @@ import remoteio.common.network.packet.PacketServerSetChannel;
  */
 public class GuiItemSetChannel extends GuiContainer {
 
-    private static final ResourceLocation GUI_BLANK =
-            new ResourceLocation(ModInfo.RESOURCE_PREFIX + "textures/gui/blank.png");
+    private static final ResourceLocation GUI_BLANK = new ResourceLocation(
+            ModInfo.RESOURCE_PREFIX + "textures/gui/blank.png");
 
     private final ItemStack itemStack;
 
@@ -82,7 +84,11 @@ public class GuiItemSetChannel extends GuiContainer {
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         fontRendererObj.drawString(StatCollector.translateToLocal("container.remoteio.channel"), 5, 5, 4210752);
         fontRendererObj.drawSplitString(
-                StatCollector.translateToLocal("container.remoteio.channel_desc"), 5, 35, 170, 4210752);
+                StatCollector.translateToLocal("container.remoteio.channel_desc"),
+                5,
+                35,
+                170,
+                4210752);
         textFieldChannel.drawTextBox();
     }
 

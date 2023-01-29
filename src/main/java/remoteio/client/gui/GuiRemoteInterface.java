@@ -8,8 +8,10 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
+
 import remoteio.client.gui.button.GuiButtonCustom;
 import remoteio.common.core.helper.MatrixHelper;
 import remoteio.common.inventory.container.ContainerRemoteInterface;
@@ -21,8 +23,8 @@ import remoteio.common.tile.TileRemoteInterface;
  */
 public class GuiRemoteInterface extends GuiContainer {
 
-    public static final ResourceLocation TEXTURE =
-            new ResourceLocation(ModInfo.RESOURCE_PREFIX + "textures/gui/upgrade_display.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(
+            ModInfo.RESOURCE_PREFIX + "textures/gui/upgrade_display.png");
 
     private final TileRemoteInterface tile;
 
@@ -45,16 +47,12 @@ public class GuiRemoteInterface extends GuiContainer {
     public void initGui() {
         super.initGui();
 
-        this.buttonList.add(new GuiButtonCustom(0, 39, 106, 17, 18)
-                .setTexture(TEXTURE)
-                .setNormalUV(196, 54)
-                .setHighlightUV(196, 72)
-                .setOffset(guiLeft, guiTop));
-        this.buttonList.add(new GuiButtonCustom(1, 141, 106, 17, 18)
-                .setTexture(TEXTURE)
-                .setNormalUV(213, 54)
-                .setHighlightUV(213, 72)
-                .setOffset(guiLeft, guiTop));
+        this.buttonList.add(
+                new GuiButtonCustom(0, 39, 106, 17, 18).setTexture(TEXTURE).setNormalUV(196, 54).setHighlightUV(196, 72)
+                        .setOffset(guiLeft, guiTop));
+        this.buttonList.add(
+                new GuiButtonCustom(1, 141, 106, 17, 18).setTexture(TEXTURE).setNormalUV(213, 54)
+                        .setHighlightUV(213, 72).setOffset(guiLeft, guiTop));
     }
 
     @Override

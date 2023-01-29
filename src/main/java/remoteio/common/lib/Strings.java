@@ -1,6 +1,7 @@
 package remoteio.common.lib;
 
 public class Strings {
+
     public static String wrap(String text, int len) {
         StringBuilder builder = new StringBuilder(text);
         int i = 0;

@@ -1,9 +1,10 @@
 package remoteio.common.core.helper;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModAPIManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModAPIManager;
 
 /**
  * @author dmillerw

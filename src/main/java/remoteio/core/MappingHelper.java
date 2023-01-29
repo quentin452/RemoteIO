@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
  * @author dmillerw
  */
 public class MappingHelper {
+
     public static Logger logger = LogManager.getLogger("RemoteIO:ASM");
 
     public static boolean obfuscated;

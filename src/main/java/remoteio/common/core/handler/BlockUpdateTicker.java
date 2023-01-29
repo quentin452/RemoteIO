@@ -1,17 +1,21 @@
 package remoteio.common.core.handler;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 import java.util.List;
 import java.util.Set;
+
 import net.minecraft.block.Block;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import remoteio.common.block.BlockSkylight;
 import remoteio.common.lib.ModBlocks;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 
 /**
  * @author dmillerw
@@ -21,6 +25,7 @@ public class BlockUpdateTicker {
     public static final int MAX_PER_TICK = 10;
 
     public static final class BlockUpdate {
+
         public final int x;
         public final int y;
         public final int z;
@@ -49,14 +54,13 @@ public class BlockUpdateTicker {
             for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
                 Block block = world.getBlock(x + side.offsetX, y + side.offsetY, z + side.offsetZ);
                 if (block != null && block == ModBlocks.skylight) {
-                    ((BlockSkylight) block)
-                            .onBlockUpdate(
-                                    world,
-                                    x + side.offsetX,
-                                    y + side.offsetY,
-                                    z + side.offsetZ,
-                                    ModBlocks.skylight,
-                                    meta);
+                    ((BlockSkylight) block).onBlockUpdate(
+                            world,
+                            x + side.offsetX,
+                            y + side.offsetY,
+                            z + side.offsetZ,
+                            ModBlocks.skylight,
+                            meta);
                 }
             }
         }

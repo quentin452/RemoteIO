@@ -1,21 +1,23 @@
 package remoteio.client.render;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.ForgeHooksClient;
+
 import remoteio.common.block.BlockRemoteInterface;
 import remoteio.common.block.core.BlockIOCore;
 import remoteio.common.lib.VisualState;
 import remoteio.common.tile.TileRemoteInterface;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 /**
  * @author dmillerw
  */
 public class RenderBlockRemoteInterface implements ISimpleBlockRenderingHandler {
+
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         IIcon inactive = BlockIOCore.icons[0];
@@ -44,13 +46,12 @@ public class RenderBlockRemoteInterface implements ISimpleBlockRenderingHandler 
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         TileRemoteInterface tile = (TileRemoteInterface) world.getTileEntity(x, y, z);
 
         if (tile != null) {
-            if (tile.remotePosition == null
-                    || !tile.remotePosition.inWorld(tile.getWorldObj())
+            if (tile.remotePosition == null || !tile.remotePosition.inWorld(tile.getWorldObj())
                     || tile.visualState != VisualState.CAMOUFLAGE_REMOTE) {
                 renderer.renderStandardBlock(block, x, y, z);
             } else {
@@ -74,7 +75,10 @@ public class RenderBlockRemoteInterface implements ISimpleBlockRenderingHandler 
 
                             tessellator.addTranslation(-rx, -ry, -rz);
                             renderer.renderBlockByRenderType(
-                                    remoteBlock, tile.remotePosition.x, tile.remotePosition.y, tile.remotePosition.z);
+                                    remoteBlock,
+                                    tile.remotePosition.x,
+                                    tile.remotePosition.y,
+                                    tile.remotePosition.z);
                             tessellator.addTranslation(rx, ry, rz);
 
                             TessellatorCapture.reset();

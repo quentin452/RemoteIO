@@ -1,17 +1,19 @@
 package remoteio.common.core.helper.mod;
 
-import appeng.api.implementations.items.IAEWrench;
-import cpw.mods.fml.common.Loader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import remoteio.api.IIOTool;
 import remoteio.common.lib.DependencyInfo;
+import appeng.api.implementations.items.IAEWrench;
+import cpw.mods.fml.common.Loader;
 
 /**
  * @author dmillerw
  */
 public class ToolHelper {
+
     public static boolean isTool(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         if (itemStack == null || itemStack.getItem() == null) return false;
 

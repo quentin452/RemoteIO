@@ -66,6 +66,7 @@ public class InventoryNBT extends InventoryBasic {
     }
 
     public static interface IInventoryCallback {
+
         public void callback(IInventory inventory);
     }
 }

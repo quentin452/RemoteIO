@@ -1,7 +1,7 @@
 package remoteio.common.network;
 
-import io.netty.buffer.ByteBuf;
 import java.io.IOException;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +16,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
+
+import io.netty.buffer.ByteBuf;
 
 /**
  * @author dmillerw
@@ -98,9 +100,9 @@ public class VanillaPacketHelper {
                 EntityPlayerMP player = (EntityPlayerMP) obj;
 
                 if (playerManager.isPlayerWatchingChunk(player, chunk.xPosition, chunk.zPosition)) {
-                    //					if (!player.loadedChunks.contains(new ChunkCoordIntPair(chunk.xPosition, chunk.zPosition))) {
+                    // if (!player.loadedChunks.contains(new ChunkCoordIntPair(chunk.xPosition, chunk.zPosition))) {
                     player.playerNetServerHandler.sendPacket(packet);
-                    //					}
+                    // }
                 }
             }
         }

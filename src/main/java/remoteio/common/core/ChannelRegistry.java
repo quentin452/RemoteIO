@@ -1,12 +1,10 @@
 package remoteio.common.core;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
+
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -14,7 +12,12 @@ import net.minecraft.world.storage.ISaveHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.world.WorldEvent;
+
 import remoteio.common.lib.DimensionalCoords;
+
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * @author dmillerw
@@ -72,7 +75,8 @@ public class ChannelRegistry {
                 for (int i = 0; i < nbtTagList.tagCount(); i++) {
                     NBTTagCompound dataTag = nbtTagList.getCompoundTagAt(i);
                     channelDataMap.put(
-                            dataTag.getInteger("channel"), DimensionalCoords.fromNBT(dataTag.getCompoundTag("coords")));
+                            dataTag.getInteger("channel"),
+                            DimensionalCoords.fromNBT(dataTag.getCompoundTag("coords")));
                     dirtyChannels.add(dataTag.getInteger("channel"));
                 }
             }

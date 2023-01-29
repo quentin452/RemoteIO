@@ -1,6 +1,7 @@
 package remoteio.common.item;
 
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -9,6 +10,7 @@ import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import remoteio.common.RemoteIO;
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.core.TransferType;
@@ -21,20 +23,15 @@ import remoteio.common.tile.core.TileIOCore;
  * @author dmillerw
  */
 public class ItemTransferChip extends ItemSelectiveMeta {
+
     private IIcon[] icons;
 
     public ItemTransferChip() {
         super(
-                new int[] {
-                    TransferType.MATTER_ITEM,
-                    TransferType.MATTER_FLUID,
-                    TransferType.MATTER_ESSENTIA,
-                    TransferType.ENERGY_IC2,
-                    TransferType.ENERGY_RF,
-                    TransferType.NETWORK_AE,
-                    TransferType.REDSTONE
-                },
-                new String[] {"item", "fluid", "essentia", "energy_ic2", "energy_rf", "network_ae", "redstone"});
+                new int[] { TransferType.MATTER_ITEM, TransferType.MATTER_FLUID, TransferType.MATTER_ESSENTIA,
+                        TransferType.ENERGY_IC2, TransferType.ENERGY_RF, TransferType.NETWORK_AE,
+                        TransferType.REDSTONE },
+                new String[] { "item", "fluid", "essentia", "energy_ic2", "energy_rf", "network_ae", "redstone" });
 
         setCreativeTab(TabRemoteIO.TAB);
     }
@@ -50,17 +47,8 @@ public class ItemTransferChip extends ItemSelectiveMeta {
     }
 
     @Override
-    public boolean onItemUseFirst(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(x, y, z);
 

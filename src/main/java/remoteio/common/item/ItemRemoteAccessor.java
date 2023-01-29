@@ -1,6 +1,7 @@
 package remoteio.common.item;
 
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,6 +12,7 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
+
 import remoteio.common.RemoteIO;
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.lib.DimensionalCoords;
@@ -19,6 +21,7 @@ import remoteio.common.tile.TileRemoteInterface;
 import remoteio.common.tile.TileRemoteInventory;
 
 public final class ItemRemoteAccessor extends Item {
+
     private final IIcon[] icons = new IIcon[2];
 
     public ItemRemoteAccessor() {
@@ -57,32 +60,20 @@ public final class ItemRemoteAccessor extends Item {
         DimensionalCoords coords = ItemRemoteAccessor.getCoordinates(stack);
         if (!player.isSneaking()) {
             if (coords != null) {
-                list.add("Dimension: "
-                        + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
+                list.add("Dimension: " + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
                 list.add("X: " + coords.x + " Y: " + coords.y + " Z: " + coords.z);
             }
         } else {
             if (coords != null) {
-                list.add("Dimension: "
-                        + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
-                list.add("Block: "
-                        + player.worldObj.getBlock(coords.x, coords.y, coords.z).getLocalizedName());
+                list.add("Dimension: " + DimensionManager.getProvider(coords.dimensionID).getDimensionName());
+                list.add("Block: " + player.worldObj.getBlock(coords.x, coords.y, coords.z).getLocalizedName());
             }
         }
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float fx,
-            float fy,
-            float fz) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float fx,
+            float fy, float fz) {
         if (getCoordinates(stack) != null) {
             DimensionalCoords coords = getCoordinates(stack);
             RemoteIO.proxy.activateBlock(world, coords.x, coords.y, coords.z, player, side, fx, fy, fz);
@@ -93,17 +84,8 @@ public final class ItemRemoteAccessor extends Item {
     }
 
     @Override
-    public boolean onItemUseFirst(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(x, y, z);
 

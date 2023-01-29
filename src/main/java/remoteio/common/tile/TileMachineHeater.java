@@ -1,7 +1,5 @@
 package remoteio.common.tile;
 
-import cpw.mods.fml.common.Optional;
-import ic2.api.energy.tile.IHeatSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.init.Blocks;
@@ -9,9 +7,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import remoteio.common.RemoteIO;
 import remoteio.common.lib.DependencyInfo;
 import remoteio.common.tile.core.TileCore;
+import cpw.mods.fml.common.Optional;
+import ic2.api.energy.tile.IHeatSource;
 
 /**
  * @author dmillerw
@@ -52,7 +53,9 @@ public class TileMachineHeater extends TileCore implements IHeatSource {
         int found = 0;
         for (ForgeDirection forgeDirection : ForgeDirection.VALID_DIRECTIONS) {
             Block block = worldObj.getBlock(
-                    xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
+                    xCoord + forgeDirection.offsetX,
+                    yCoord + forgeDirection.offsetY,
+                    zCoord + forgeDirection.offsetZ);
             if (block != null && (block == Blocks.lava || block == Blocks.flowing_lava)) found++;
         }
         boolean newFilled = found >= 2;
@@ -63,7 +66,9 @@ public class TileMachineHeater extends TileCore implements IHeatSource {
     private void push() {
         for (ForgeDirection forgeDirection : ForgeDirection.VALID_DIRECTIONS) {
             TileEntity tileEntity = worldObj.getTileEntity(
-                    xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
+                    xCoord + forgeDirection.offsetX,
+                    yCoord + forgeDirection.offsetY,
+                    zCoord + forgeDirection.offsetZ);
             if (tileEntity instanceof TileEntityFurnace) {
                 ((TileEntityFurnace) tileEntity).furnaceBurnTime = 200;
                 if (tileEntity.getBlockType() == Blocks.furnace) {

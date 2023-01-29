@@ -1,13 +1,15 @@
 package remoteio.client.handler;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * @author dmillerw
  */
 public class TooltipEventHandler {
+
     @SubscribeEvent
     public void itemTooltipEvent(ItemTooltipEvent event) {
         if (event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("inhibit")) {

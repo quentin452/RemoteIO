@@ -5,12 +5,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
 import remoteio.common.RemoteIO;
 
 /**
  * @author dmillerw
  */
 public class DimensionalCoords {
+
     public static DimensionalCoords create(TileEntity tile) {
         return new DimensionalCoords(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
     }
@@ -21,7 +23,10 @@ public class DimensionalCoords {
 
     public static DimensionalCoords fromNBT(NBTTagCompound nbt) {
         return new DimensionalCoords(
-                nbt.getInteger("dimension"), nbt.getInteger("x"), nbt.getInteger("y"), nbt.getInteger("z"));
+                nbt.getInteger("dimension"),
+                nbt.getInteger("x"),
+                nbt.getInteger("y"),
+                nbt.getInteger("z"));
     }
 
     public int dimensionID;
@@ -130,8 +135,7 @@ public class DimensionalCoords {
     }
 
     public boolean equals(DimensionalCoords coords) {
-        return ((this.dimensionID == coords.dimensionID)
-                && (this.x == coords.x)
+        return ((this.dimensionID == coords.dimensionID) && (this.x == coords.x)
                 && (this.y == coords.y)
                 && (this.z == coords.z));
     }

@@ -1,13 +1,15 @@
 package remoteio.common.lib;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+
 import remoteio.common.item.*;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author dmillerw
  */
 public class ModItems {
+
     public static Item locationChip;
     public static Item transferChip;
     public static Item upgradeChip;

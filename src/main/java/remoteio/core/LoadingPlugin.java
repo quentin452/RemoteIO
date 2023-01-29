@@ -1,7 +1,8 @@
 package remoteio.core;
 
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import java.util.Map;
+
+import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 /**
  * @author dmillerw
@@ -11,7 +12,7 @@ public class LoadingPlugin implements IFMLLoadingPlugin {
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[] {"remoteio.core.transform.CoreTransformer"};
+        return new String[] { "remoteio.core.transform.CoreTransformer" };
     }
 
     @Override

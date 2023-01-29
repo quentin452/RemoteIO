@@ -1,11 +1,14 @@
 package remoteio.client.gui;
 
 import java.util.List;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.opengl.GL11;
+
 import remoteio.client.documentation.Documentation;
 import remoteio.client.documentation.DocumentationEntry;
 import remoteio.client.documentation.IDocumentationPage;
@@ -14,6 +17,7 @@ import remoteio.client.documentation.IDocumentationPage;
  * @author dmillerw
  */
 public class GuiDocumentation extends GuiScreen {
+
     private static final ResourceLocation TEXTURE = new ResourceLocation("remoteio:textures/gui/tablet_green.png");
 
     public static final int BACK_COLOR = 0x304029;
@@ -73,8 +77,7 @@ public class GuiDocumentation extends GuiScreen {
         mc.getTextureManager().bindTexture(TEXTURE);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, XSIZE, YSIZE);
 
-        if (mouseX >= guiLeft + HOME_X
-                && mouseX <= guiLeft + HOME_X + HOME_WIDTH
+        if (mouseX >= guiLeft + HOME_X && mouseX <= guiLeft + HOME_X + HOME_WIDTH
                 && mouseY >= guiTop + HOME_Y
                 && mouseY <= guiTop + HOME_Y + HOME_HEIGHT) {
             drawTexturedModalRect(guiLeft + HOME_X, guiTop + HOME_Y, HOME_OVER_X, HOME_OVER_Y, HOME_WIDTH, HOME_HEIGHT);
@@ -101,10 +104,10 @@ public class GuiDocumentation extends GuiScreen {
                     maxY = standardY + middle + offset * 3;
                 } else if (mouseY >= standardY - offset + middle + SCREEN_HEIGHT / 4
                         && mouseY <= standardY + offset * 3 + middle + SCREEN_HEIGHT / 4) {
-                    selection = 2;
-                    minY = standardY - offset + middle + SCREEN_HEIGHT / 4;
-                    maxY = standardY + offset * 3 + middle + SCREEN_HEIGHT / 4;
-                }
+                            selection = 2;
+                            minY = standardY - offset + middle + SCREEN_HEIGHT / 4;
+                            maxY = standardY + offset * 3 + middle + SCREEN_HEIGHT / 4;
+                        }
             }
 
             GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -145,15 +148,14 @@ public class GuiDocumentation extends GuiScreen {
             if (categoryCache != null && !categoryCache.isEmpty()) {
                 for (int i = 0; i < categoryCache.size(); i++) {
                     DocumentationEntry entry = categoryCache.get(i);
-                    String localizedName = StatCollector.translateToLocal(entry.getUnlocalizedName())
-                            .toUpperCase();
+                    String localizedName = StatCollector.translateToLocal(entry.getUnlocalizedName()).toUpperCase();
                     if (mc.fontRenderer.getStringWidth(localizedName) >= SCREEN_WIDTH) {
                         localizedName = mc.fontRenderer.trimStringToWidth(
-                                localizedName, SCREEN_WIDTH - (mc.fontRenderer.getStringWidth(".....")));
+                                localizedName,
+                                SCREEN_WIDTH - (mc.fontRenderer.getStringWidth(".....")));
                         localizedName = localizedName + "...";
                     }
-                    boolean selected = mouseX >= guiLeft + mousePadding
-                            && mouseX <= guiLeft + XSIZE - mousePadding
+                    boolean selected = mouseX >= guiLeft + mousePadding && mouseX <= guiLeft + XSIZE - mousePadding
                             && mouseY >= guiTop + SCREEN_Y + 20 + (15 * i)
                             && mouseY <= guiTop + SCREEN_Y + 20 + (15 * i) + 10;
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -162,8 +164,8 @@ public class GuiDocumentation extends GuiScreen {
                     tessellator.setColorOpaque_I(BACK_COLOR);
                     if (selected) {
                         tessellator.addVertex(guiLeft + mousePadding, guiTop + SCREEN_Y + 20 + (15 * i) + 10, 0);
-                        tessellator.addVertex(
-                                guiLeft + XSIZE - mousePadding, guiTop + SCREEN_Y + 20 + (15 * i) + 10, 0);
+                        tessellator
+                                .addVertex(guiLeft + XSIZE - mousePadding, guiTop + SCREEN_Y + 20 + (15 * i) + 10, 0);
                         tessellator.addVertex(guiLeft + XSIZE - mousePadding, guiTop + SCREEN_Y + 20 + (15 * i), 0);
                         tessellator.addVertex(guiLeft + mousePadding, guiTop + SCREEN_Y + 20 + (15 * i), 0);
                     }
@@ -206,8 +208,8 @@ public class GuiDocumentation extends GuiScreen {
                         selection = 1;
                     } else if (mouseY >= standardY - offset + middle + SCREEN_HEIGHT / 4
                             && mouseY <= standardY + offset * 3 + middle + SCREEN_HEIGHT / 4) {
-                        selection = 2;
-                    }
+                                selection = 2;
+                            }
                 }
 
                 switch (selection) {
@@ -231,8 +233,7 @@ public class GuiDocumentation extends GuiScreen {
                 this.currentEntry = getEntry(mouseX, mouseY);
             }
 
-            if (mouseX >= guiLeft + HOME_X
-                    && mouseX <= guiLeft + HOME_X + HOME_WIDTH
+            if (mouseX >= guiLeft + HOME_X && mouseX <= guiLeft + HOME_X + HOME_WIDTH
                     && mouseY >= guiTop + HOME_Y
                     && mouseY <= guiTop + HOME_Y + HOME_HEIGHT) {
                 this.currentCategory = null;
@@ -250,8 +251,7 @@ public class GuiDocumentation extends GuiScreen {
 
         int mousePadding = 25;
         for (int i = 0; i < this.categoryCache.size(); i++) {
-            boolean selected = x >= guiLeft + mousePadding
-                    && x <= guiLeft + XSIZE - mousePadding
+            boolean selected = x >= guiLeft + mousePadding && x <= guiLeft + XSIZE - mousePadding
                     && y >= guiTop + SCREEN_Y + 20 + (15 * i)
                     && y <= guiTop + SCREEN_Y + 20 + (15 * i) + 10;
             if (selected) {

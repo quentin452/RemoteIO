@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import remoteio.common.RemoteIO;
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.core.UpgradeType;
@@ -20,30 +21,20 @@ import remoteio.common.tile.core.TileIOCore;
  * @author dmillerw
  */
 public class ItemUpgradeChip extends ItemSelectiveMeta {
+
     private IIcon[] icons;
 
     public ItemUpgradeChip() {
         super(
-                new int[] {
-                    UpgradeType.REMOTE_CAMO, UpgradeType.REMOTE_ACCESS, UpgradeType.SIMPLE_CAMO,
-                },
-                new String[] {"remote_camo", "remote_access", "simple_camo"});
+                new int[] { UpgradeType.REMOTE_CAMO, UpgradeType.REMOTE_ACCESS, UpgradeType.SIMPLE_CAMO, },
+                new String[] { "remote_camo", "remote_access", "simple_camo" });
 
         setCreativeTab(TabRemoteIO.TAB);
     }
 
     @Override
-    public boolean onItemUseFirst(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(x, y, z);
 

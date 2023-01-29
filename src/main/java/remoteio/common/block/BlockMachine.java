@@ -1,6 +1,7 @@
 package remoteio.common.block;
 
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -17,6 +18,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
+
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.lib.ModInfo;
 import remoteio.common.tile.TileMachineHeater;
@@ -27,6 +29,7 @@ import remoteio.common.tile.core.TileCore;
  * @author dmillerw
  */
 public class BlockMachine extends BlockContainer {
+
     public static IIcon[] icons;
     public static IIcon[] overlays;
 
@@ -47,8 +50,8 @@ public class BlockMachine extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy, float fz) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float fx, float fy,
+            float fz) {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 0) {
             ItemStack held = player.getHeldItem();
@@ -67,7 +70,8 @@ public class BlockMachine extends BlockContainer {
                         if (!world.isRemote) {
                             ItemStack filled = FluidContainerRegistry.fillFluidContainer(
                                     new FluidStack(
-                                            FluidRegistry.WATER, FluidContainerRegistry.getContainerCapacity(held)),
+                                            FluidRegistry.WATER,
+                                            FluidContainerRegistry.getContainerCapacity(held)),
                                     held);
                             if (filled != null) {
                                 player.setCurrentItemOrArmor(0, filled);

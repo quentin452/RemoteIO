@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -56,8 +57,7 @@ public class GuiButtonCustom extends GuiButton {
     public void drawButton(Minecraft mc, int x, int y) {
         if (visible) {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            this.field_146123_n = x >= offsetX + this.xPosition
-                    && y >= offsetY + this.yPosition
+            this.field_146123_n = x >= offsetX + this.xPosition && y >= offsetY + this.yPosition
                     && x < offsetX + this.xPosition + this.width
                     && y < offsetY + this.yPosition + this.height;
             int k = this.getHoverState(this.field_146123_n);
@@ -69,7 +69,12 @@ public class GuiButtonCustom extends GuiButton {
 
             if (k == 1) { // Default
                 this.drawTexturedModalRect(
-                        offsetX + this.xPosition, offsetY + this.yPosition, uNormal, vNormal, this.width, this.height);
+                        offsetX + this.xPosition,
+                        offsetY + this.yPosition,
+                        uNormal,
+                        vNormal,
+                        this.width,
+                        this.height);
             } else if (k == 2) { // Hover
                 this.drawTexturedModalRect(
                         offsetX + this.xPosition,
@@ -103,8 +108,7 @@ public class GuiButtonCustom extends GuiButton {
 
     @Override
     public boolean mousePressed(Minecraft mc, int x, int y) {
-        return this.enabled
-                && this.visible
+        return this.enabled && this.visible
                 && x >= offsetX + this.xPosition
                 && y >= offsetY + this.yPosition
                 && x < offsetX + this.xPosition + this.width

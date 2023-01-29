@@ -5,7 +5,9 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+
 import org.lwjgl.opengl.GL11;
+
 import remoteio.client.helper.IORenderHelper;
 import remoteio.common.block.BlockMachine;
 import remoteio.common.core.helper.ArrayHelper;
@@ -16,6 +18,7 @@ import remoteio.common.tile.TileMachineReservoir;
  * @author dmillerw
  */
 public class RenderTileMachine extends TileEntitySpecialRenderer {
+
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f) {
         boolean render = false;

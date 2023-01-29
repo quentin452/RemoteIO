@@ -1,7 +1,8 @@
 package remoteio.client.documentation;
 
-import com.google.common.collect.Lists;
 import java.util.LinkedList;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author dmillerw

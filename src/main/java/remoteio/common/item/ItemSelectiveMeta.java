@@ -3,6 +3,7 @@ package remoteio.common.item;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,6 +12,7 @@ import net.minecraft.item.ItemStack;
  * @author dmillerw
  */
 public class ItemSelectiveMeta extends Item {
+
     protected final int[] values;
     protected Map<Integer, String> names;
 

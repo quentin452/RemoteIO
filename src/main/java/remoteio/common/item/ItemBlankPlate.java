@@ -2,6 +2,7 @@ package remoteio.common.item;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
+
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.lib.ModInfo;
 
@@ -9,6 +10,7 @@ import remoteio.common.lib.ModInfo;
  * @author dmillerw
  */
 public class ItemBlankPlate extends Item {
+
     public ItemBlankPlate() {
         setCreativeTab(TabRemoteIO.TAB);
     }

@@ -13,6 +13,6 @@ public class EntityHelper {
         Vec3 vec31 = entity.getLook(1F);
         Vec3 vec32 = vec3.addVector(vec31.xCoord * 5, vec31.yCoord * 5, vec31.zCoord * 5);
 
-        return new Vec3[] {vec3, vec32};
+        return new Vec3[] { vec3, vec32 };
     }
 }

@@ -2,6 +2,7 @@ package remoteio.common.core;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
 import remoteio.common.lib.ModBlocks;
 
 public class TabRemoteIO extends CreativeTabs {

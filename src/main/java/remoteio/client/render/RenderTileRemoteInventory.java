@@ -5,7 +5,9 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+
 import org.lwjgl.opengl.GL11;
+
 import remoteio.client.helper.IORenderHelper;
 import remoteio.common.block.core.BlockIOCore;
 import remoteio.common.tile.TileRemoteInventory;
@@ -14,6 +16,7 @@ import remoteio.common.tile.TileRemoteInventory;
  * @author dmillerw
  */
 public class RenderTileRemoteInventory extends TileEntitySpecialRenderer {
+
     public void renderRemoteInterfaceAt(TileRemoteInventory tile, double x, double y, double z, float partial) {
         if (!tile.visualState.isCamouflage()) {
             IIcon icon = BlockIOCore.overlays[tile.visualState.ordinal()];

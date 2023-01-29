@@ -6,13 +6,16 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+
 import org.lwjgl.opengl.GL11;
+
 import remoteio.common.block.BlockIntelligentWorkbench;
 
 /**
  * @author dmillerw
  */
 public class RenderTileIntelligentWorkbench extends TileEntitySpecialRenderer {
+
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float partial) {
         GL11.glPushMatrix();

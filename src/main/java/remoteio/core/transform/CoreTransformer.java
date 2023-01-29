@@ -1,15 +1,19 @@
 package remoteio.core.transform;
 
-import com.google.common.collect.Lists;
 import java.util.Arrays;
 import java.util.List;
+
 import net.minecraft.launchwrapper.IClassTransformer;
+
 import remoteio.core.MappingHelper;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author dmillerw
  */
 public class CoreTransformer implements IClassTransformer {
+
     public List<ITransformer> transformerList = Lists.newArrayList();
 
     private void addTransformer(ITransformer transformer) {

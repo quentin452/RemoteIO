@@ -1,9 +1,11 @@
 package remoteio.client.helper;
 
-import com.google.common.collect.Lists;
 import java.util.EnumSet;
 import java.util.LinkedList;
+
 import net.minecraft.client.gui.FontRenderer;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author dmillerw
@@ -81,8 +83,10 @@ public class TextFormatter {
 
             if (overrideColor != -1) activeColor = -1;
 
-            FormattedString formattedString =
-                    new FormattedString(stringBuilder.toString(), EnumSet.copyOf(formats), activeColor);
+            FormattedString formattedString = new FormattedString(
+                    stringBuilder.toString(),
+                    EnumSet.copyOf(formats),
+                    activeColor);
 
             formats.removeAll(toRemove);
             toRemove.clear();
@@ -104,8 +108,10 @@ public class TextFormatter {
             formattedString.draw(fontRenderer, x, y);
             x += formattedString.getWidth(fontRenderer);
             x += fontRenderer.getCharWidth(' ');
-            if (formattedString.format.contains(Format.BOLD))
-                x += fontRenderer.getCharWidth(' '); // BOLD seems to eat spaces. Formatting/parsing error?
+            if (formattedString.format.contains(Format.BOLD)) x += fontRenderer.getCharWidth(' '); // BOLD seems to eat
+                                                                                                   // spaces.
+                                                                                                   // Formatting/parsing
+                                                                                                   // error?
         }
     }
 
@@ -182,6 +188,7 @@ public class TextFormatter {
     }
 
     public static enum Format {
+
         BOLD('*', 'l'),
         ITALIC('-', 'o'),
         UNDERLINE('_', 'n');

@@ -6,11 +6,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import remoteio.common.core.TabRemoteIO;
 import remoteio.common.core.handler.BlockUpdateTicker;
 import remoteio.common.lib.ModInfo;
 
 public class BlockSkylight extends Block {
+
     private IIcon blank;
     private IIcon[] icons;
 
@@ -59,8 +61,7 @@ public class BlockSkylight extends Block {
 
     @Override
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
-        return world.getBlock(x, y, z) == this
-                ? world.getBlockMetadata(x, y, z) == 0
+        return world.getBlock(x, y, z) == this ? world.getBlockMetadata(x, y, z) == 0
                 : super.shouldSideBeRendered(world, x, y, z, side);
     }
 
@@ -83,8 +84,8 @@ public class BlockSkylight extends Block {
         return block == this && meta > 0;
     }
 
-    public IIcon getConnectedBlockTexture(
-            IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5, IIcon[] icons) {
+    public IIcon getConnectedBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5,
+            IIcon[] icons) {
 
         boolean isOpenUp = false, isOpenDown = false, isOpenLeft = false, isOpenRight = false;
 

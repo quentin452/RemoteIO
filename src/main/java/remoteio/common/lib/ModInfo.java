@@ -1,6 +1,7 @@
 package remoteio.common.lib;
 
 public class ModInfo {
+
     public static final String ID = "RIO";
     public static final String NAME = "RemoteIO";
     public static final String VERSION = "GRADLETOKEN_VERSION";

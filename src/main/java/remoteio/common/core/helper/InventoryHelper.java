@@ -1,6 +1,7 @@
 package remoteio.common.core.helper;
 
 import java.util.Random;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -27,8 +28,8 @@ public class InventoryHelper {
         return items;
     }
 
-    public static boolean containsStack(
-            IInventory inventory, ItemStack stack, boolean compareMeta, boolean compareNBT) {
+    public static boolean containsStack(IInventory inventory, ItemStack stack, boolean compareMeta,
+            boolean compareNBT) {
         ItemStack[] items = toArray(inventory);
 
         for (int i = 0; i < items.length; i++) {
@@ -76,8 +77,7 @@ public class InventoryHelper {
                             new ItemStack(stack.getItem(), j1, stack.getItemDamage()));
 
                     if (stack.hasTagCompound()) {
-                        entityitem.getEntityItem().setTagCompound((NBTTagCompound)
-                                stack.getTagCompound().copy());
+                        entityitem.getEntityItem().setTagCompound((NBTTagCompound) stack.getTagCompound().copy());
                     }
 
                     float f3 = 0.05F;
